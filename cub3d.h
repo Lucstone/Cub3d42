@@ -6,7 +6,7 @@
 /*   By: lnaidu <lnaidu@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:31:24 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/05/26 11:35:12 by lnaidu           ###   ########.fr       */
+/*   Updated: 2023/05/26 17:10:21 by lnaidu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,24 @@
 # include <stdlib.h>
 # include <ctype.h>
 
+typedef	struct s_map
+{
+	int		countNO;
+	int		countS0;
+	int		countWE;
+	int		countEA;
+	int		countF;
+	int		countC;
+	char	*NO;
+	char	*S0;
+	char 	*WE;
+	char 	*EA;
+	char	*F;
+	char	*C;
+	char	**map;
+	int		x;
+	int		y;
+}				t_map;
+
+int checkerr(char *file, int ac);
 #endif
