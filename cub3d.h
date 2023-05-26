@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnaidu <lnaidu@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:31:24 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/05/26 11:35:12 by lnaidu           ###   ########.fr       */
+/*   Updated: 2023/05/26 16:40:29 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,43 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <ctype.h>
+
+typedef struct s_op
+{
+	int		mapw;
+	int		maph;
+	int		screenw;
+	int		screenh;
+	double	camx;
+	double	pospx;
+	double	pospy;
+	double	dirpx;
+	double	dirpy;
+	double	planex;
+	double	planey;
+	double	time;
+	double	oldtime;
+	double	r_dirx;
+	double	r_diry;
+}	t_op;
+
+typedef struct s_data
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_data;
+
+typedef struct s_cub
+{
+	int	he;
+	int	wi;
+	void	*mlx;
+	void	*win;
+	t_op	ray;
+	t_data	*img;
+}	t_cub;
 
 #endif

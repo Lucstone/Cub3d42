@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lnaidu <lnaidu@student.42nice.fr>          +#+  +:+       +#+         #
+#    By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/17 11:56:41 by lnaidu            #+#    #+#              #
-#    Updated: 2023/05/26 11:41:19 by lnaidu           ###   ########.fr        #
+#    Updated: 2023/05/26 14:22:24 by hdiot            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,8 @@ NAME = Cub3d
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
 SRC = main.c
+MLX	= -lmlx -framework OpenGL -framework AppKit
+
 #COLORS
 RED = \033[1;31m
 GREEN = \033[1;32m
@@ -28,7 +30,7 @@ OBJS = ${SRC:.c=.o}
 
 $(NAME): $(OBJS)
 	@make all -C ./Libft
-	@$(CC) $(CFLAGS) ${OBJS} ./Libft/libft.a -o $(NAME)
+	@$(CC) $(CFLAGS) -O3 ${OBJS} ${MLX} ./Libft/libft.a -o $(NAME)
 	@echo "$(GREEN) Computing !$(DEFAULT)"
 
 all : $(NAME)
