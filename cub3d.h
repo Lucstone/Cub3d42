@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlenpf.c                                      :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lnaidu <lnaidu@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/07 14:12:55 by lnaidu            #+#    #+#             */
-/*   Updated: 2022/12/05 10:45:46 by lnaidu           ###   ########.fr       */
+/*   Created: 2023/05/26 11:31:24 by lnaidu            #+#    #+#             */
+/*   Updated: 2023/05/26 11:35:12 by lnaidu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#ifndef CUB3D_H
+# define CUB3D_H
 
-size_t	ft_strlenpf(const char *s)
-{
-	size_t	i;
+# include "./Libft/srclib/libft.h"
+# include "./Libft/gnl/get_next_line.h"
+# include <errno.h>
+# include <string.h>
+# include <math.h>
+# include <mlx.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <ctype.h>
 
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-/*
-int main()
-{
-	char str[]= "hdsjakdhakj";
-	printf("%zu",ft_strlen(str));
-}*/
+#endif
