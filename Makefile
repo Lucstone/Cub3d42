@@ -6,7 +6,7 @@
 #    By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/17 11:56:41 by lnaidu            #+#    #+#              #
-#    Updated: 2023/05/26 14:22:24 by hdiot            ###   ########.fr        #
+#    Updated: 2023/05/27 15:56:47 by hdiot            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = Cub3d
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
 SRC = main.c
-MLX	= -lmlx -framework OpenGL -framework AppKit
+MLX	= -lmlx -Imlx_linux -lXext -lX11 -lm -lz -OFast
 
 #COLORS
 RED = \033[1;31m

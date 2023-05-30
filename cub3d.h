@@ -6,7 +6,7 @@
 /*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:31:24 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/05/26 16:40:29 by hdiot            ###   ########.fr       */
+/*   Updated: 2023/05/30 10:30:57 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,30 @@ typedef struct s_op
 	double	dirpy;
 	double	planex;
 	double	planey;
-	double	time;
-	double	oldtime;
 	double	r_dirx;
 	double	r_diry;
+	double	mvspeed;
+	double	rotspeed;
 }	t_op;
+
+typedef struct s_dda
+{
+	int		mapx;
+	int		mapy;
+	double	delta_x;
+	double	delta_y;
+	double	side_disx;
+	double	side_disy;
+	int		stepX;
+	int		stepY;
+	int		walldis;
+	int		is_wall;
+	int		wallside;
+	double	ppwall_dist;
+	int		linehe;
+	int		draw_start;
+	int		draw_end;
+}	t_dda;
 
 typedef struct s_data
 {
@@ -60,6 +79,7 @@ typedef struct s_cub
 	void	*win;
 	t_op	ray;
 	t_data	*img;
+	t_dda	dda;
 }	t_cub;
 
 #endif
