@@ -6,7 +6,7 @@
 /*   By: lnaidu <lnaidu@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:31:10 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/05/30 20:12:01 by lnaidu           ###   ########.fr       */
+/*   Updated: 2023/05/30 20:21:51 by lnaidu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	ft_get_texture(t_map *data, char *str)
 		return (printf("Error\nWrong C texture coordinates\n"), 1);
 	else if (ft_strncmp("\n", str, 1) && (str[i] != 'N' && str[i] != 'S'
 			&& str[i] != 'W' && str[i] != 'E' && str[i] != 'F'
-			&& str[i] != 'C' && str[i] != '1'))
+			&& str[i] != 'C'))
 		return (printf("Error\nNOT a good caractere\n"), 1);
 	return (0);
 }
