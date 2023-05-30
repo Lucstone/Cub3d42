@@ -6,14 +6,14 @@
 #    By: lnaidu <lnaidu@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/17 11:56:41 by lnaidu            #+#    #+#              #
-#    Updated: 2023/05/26 13:24:25 by lnaidu           ###   ########.fr        #
+#    Updated: 2023/05/30 20:10:24 by lnaidu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = Cub3d
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
-SRC = ./main.c ./Parsing/checkmap.c
+SRC = ./main.c ./Parsing/checkmap.c ./Parsing/walltext.c ./Parsing/walltext2.c
 #COLORS
 RED = \033[1;31m
 GREEN = \033[1;32m

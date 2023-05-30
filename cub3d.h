@@ -6,7 +6,7 @@
 /*   By: lnaidu <lnaidu@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:31:24 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/05/26 17:10:21 by lnaidu           ###   ########.fr       */
+/*   Updated: 2023/05/30 20:07:37 by lnaidu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,30 +18,36 @@
 # include <errno.h>
 # include <string.h>
 # include <math.h>
-# include <mlx.h>
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <ctype.h>
 
-typedef	struct s_map
+typedef struct s_map
 {
-	int		countNO;
-	int		countS0;
-	int		countWE;
-	int		countEA;
-	int		countF;
-	int		countC;
-	char	*NO;
-	char	*S0;
-	char 	*WE;
-	char 	*EA;
-	char	*F;
-	char	*C;
+	int		countno;
+	int		countso;
+	int		countwe;
+	int		countea;
+	int		countf;
+	int		countc;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	char	*f;
+	char	*c;
 	char	**map;
 	int		x;
 	int		y;
-}				t_map;
+	int		j;
+}					t_map;
 
-int checkerr(char *file, int ac);
+int	checkerr(char *file, int ac);
+int	ft_walltextno(char *crd, char *str, t_map *data, int i);
+int	ft_walltextso(char *crd, char *str, t_map *data, int i);
+int	ft_walltextwe(char *crd, char *str, t_map *data, int i);
+int	ft_walltextea(char *crd, char *str, t_map *data, int i);
+int	ft_walltextf(char *crd, char *str, t_map *data, int i);
+int	ft_walltextc(char *crd, char *str, t_map *data, int i);
 #endif
