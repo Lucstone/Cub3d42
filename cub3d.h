@@ -6,7 +6,7 @@
 /*   By: lnaidu <lnaidu@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:31:24 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/05/30 20:07:37 by lnaidu           ###   ########.fr       */
+/*   Updated: 2023/05/31 14:34:13 by lnaidu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,6 @@ int	ft_walltextwe(char *crd, char *str, t_map *data, int i);
 int	ft_walltextea(char *crd, char *str, t_map *data, int i);
 int	ft_walltextf(char *crd, char *str, t_map *data, int i);
 int	ft_walltextc(char *crd, char *str, t_map *data, int i);
+int	ft_checkalltext(t_map *data);
+
 #endif

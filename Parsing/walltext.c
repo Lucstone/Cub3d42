@@ -6,7 +6,7 @@
 /*   By: lnaidu <lnaidu@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 17:07:19 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/05/30 20:09:45 by lnaidu           ###   ########.fr       */
+/*   Updated: 2023/05/31 17:01:08 by lnaidu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ int	ft_walltextno(char *crd, char *str, t_map *data, int i)
 		if (str[i++] != crd[data->j++])
 			return (-1);
 	}
-	if (str[i] != 32 && str[i] != 9)
+	if (str[i] != 32)
 		return (-1);
-	while (str[i] == 32 || str[i] == 9)
+	while (str[i] == 32)
 		i++;
 	data->j = 0;
-	while (str[i] != 32 && str[i] != 9 && str[i] != 10)
+	while (str[i] != 32 && str[i] != 10)
 		data->no[data->j++] = str[i++];
 	data->no[data->j] = 0;
 	data->countno++;
@@ -34,7 +34,7 @@ int	ft_walltextno(char *crd, char *str, t_map *data, int i)
 		return (printf("Error\nInvalid\n"), -1);
 	while (str[i])
 	{
-		if (str[i] != 32 && str[i] != 9 && str[i] != 10)
+		if (str[i] != 32 && str[i] != 10)
 			return (-1);
 		i++;
 	}
@@ -50,12 +50,12 @@ int	ft_walltextea(char *crd, char *str, t_map *data, int i)
 		if (str[i++] != crd[data->j++])
 			return (-1);
 	}
-	if (str[i] != 32 && str[i] != 9)
+	if (str[i] != 32)
 		return (-1);
-	while (str[i] == 32 || str[i] == 9)
+	while (str[i] == 32)
 		i++;
 	data->j = 0;
-	while (str[i] != 32 && str[i] != 9 && str[i] != 10)
+	while (str[i] != 32 && str[i] != 10)
 		data->ea[data->j++] = str[i++];
 	data->ea[data->j] = 0;
 	data->countea++;
@@ -63,7 +63,7 @@ int	ft_walltextea(char *crd, char *str, t_map *data, int i)
 		return (printf("Error\nInvalid\n"), -1);
 	while (str[i])
 	{
-		if (str[i] != 32 && str[i] != 9 && str[i] != 10)
+		if (str[i] != 32 && str[i] != 10)
 			return (-1);
 		i++;
 	}
@@ -79,12 +79,12 @@ int	ft_walltextwe(char *crd, char *str, t_map *data, int i)
 		if (str[i++] != crd[data->j++])
 			return (-1);
 	}
-	if (str[i] != 32 && str[i] != 9)
+	if (str[i] != 32)
 		return (-1);
-	while (str[i] == 32 || str[i] == 9)
+	while (str[i] == 32)
 		i++;
 	data->j = 0;
-	while (str[i] != 32 && str[i] != 9 && str[i] != 10)
+	while (str[i] != 32 && str[i] != 10)
 		data->we[data->j++] = str[i++];
 	data->we[data->j] = 0;
 	data->countwe++;
@@ -92,7 +92,7 @@ int	ft_walltextwe(char *crd, char *str, t_map *data, int i)
 		return (printf("Error\nInvalid\n"), -1);
 	while (str[i])
 	{
-		if (str[i] != 32 && str[i] != 9 && str[i] != 10)
+		if (str[i] != 32 && str[i] != 10)
 			return (-1);
 		i++;
 	}
@@ -108,12 +108,12 @@ int	ft_walltextso(char *crd, char *str, t_map *data, int i)
 		if (str[i++] != crd[data->j++])
 			return (-1);
 	}
-	if (str[i] != 32 && str[i] != 9)
+	if (str[i] != 32)
 		return (-1);
-	while (str[i] == 32 || str[i] == 9)
+	while (str[i] == 32)
 		i++;
 	data->j = 0;
-	while (str[i] != 32 && str[i] != 9 && str[i] != 10)
+	while (str[i] != 32 && str[i] != 10)
 		data->so[data->j++] = str[i++];
 	data->so[data->j] = 0;
 	data->countso++;
@@ -121,7 +121,7 @@ int	ft_walltextso(char *crd, char *str, t_map *data, int i)
 		return (printf("Error\nInvalid\n"), -1);
 	while (str[i])
 	{
-		if (str[i] != 32 && str[i] != 9 && str[i] != 10)
+		if (str[i] != 32 && str[i] != 10)
 			return (-1);
 		i++;
 	}

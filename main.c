@@ -6,7 +6,7 @@
 /*   By: lnaidu <lnaidu@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:31:10 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/05/30 20:21:51 by lnaidu           ###   ########.fr       */
+/*   Updated: 2023/05/31 17:39:11 by lnaidu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_get_texture(t_map *data, char *str)
 	int	i;
 
 	i = 0;
-	while ((str[i] == 32 || str[i] == 9))
+	while (str[i] == 32)
 		i++;
 	if (str[i] == 'N' && ft_walltextno("NO", str, data, i) == -1)
 		return (printf("Error\nWrong NO texture coordinates\n"), 1);
@@ -55,30 +55,63 @@ int	recupmap(t_map *data, char *str)
 	int	i;
 
 	i = 0;
-	while ((str[i] == 32 || str[i] == 9 || str[i] == 10))
+	while ((str[i] == 32 || str[i] == 10))
 		i++;
 	if (data->countno == 1 && data->countso == 1 && data->countea == 1
 		&& data->countwe == 1 && data->countf == 1 && data->countc == 1)
 	{
 		if (str[i] == '1')
 		{
-			while (str[i])
+			/*while (str[i])
 			{
-				if ((str[i] == 32 || str[i] == 9
-						|| str[i] == '1' || str[i] == 10))
+				if ((str[i] == 32 || str[i] == '1' || str[i] == 10))
 					i++;
-			}
+			}*/
 			return (0);
 		}
 	}
 	return (1);
 }
 
+
+char **arraymap(t_map *data, char *str, int fd)
+{
+	int	i;
+	int j;
+	char *tmp;
+
+	j = 0;
+	data->map = malloc(sizeof(char *) * 10000);
+
+	i = 0;
+	while (str)
+	{
+		while (str[j])
+		{
+			if (!(str[j] == 32 || str[j] == '0' || str[j] == '1' || str[j] == 'N' || str[j] == 'S' || str[j] == 'E' || str[j] == 'W' || str[j] == 10))
+				exit (1);
+			if(str[0] == 10)
+				exit (1);
+		//ajouter un printferror pour valeurs non valable voir si mettre tmp pour eviter saut de lignes
+			j++;
+		}
+		tmp = ft_strtrim(str, "\n");
+		j = 0;
+		data->map[i] = tmp;
+		free(str);
+		str = get_next_line(fd);
+		i++;
+	}
+	return (data->map);
+}
+
 int	ft_checkmap(char *map, t_map *data)
 {
 	int		fd;
 	char	*gnl;
+	int		i;
 
+	i = 0;
 	fd = open(map, O_RDONLY);
 	gnl = get_next_line(fd);
 	while (gnl != NULL)
@@ -89,8 +122,25 @@ int	ft_checkmap(char *map, t_map *data)
 			return (1);
 		gnl = get_next_line(fd);
 	}
-	printf("salutss%s\n", gnl);
+	if (ft_checkalltext(data) == 1)
+		return (1);
+	data->map = arraymap(data, gnl, fd);
+	gnl = get_next_line(fd);
 	return (0);
+}
+
+void	ft_printdata(t_map data)
+{
+	printf("x = %ds\n", data.x);
+	printf("NO = %s81292\n", data.no);
+	printf("SO = %s81292\n", data.so);
+	printf("WE = %s81292\n", data.we);
+	printf("EA = %s81292\n", data.ea);
+	printf("F = %s81292\n", data.f);
+	printf("C = %s81292\n", data.c);
+	int i = 0;
+	while (data.map[i])
+		printf("%s\n", data.map[i++]);
 }
 
 int	main(int ac, char **av)
@@ -102,12 +152,6 @@ int	main(int ac, char **av)
 	ft_initdata(&data);
 	if (ft_checkmap(av[1], &data) == 1)
 		return (1);
-	printf("x = %d\n", data.x);
-	printf("NO = %s\n", data.no);
-	printf("SO = %s\n", data.so);
-	printf("WE = %s\n", data.we);
-	printf("EA = %s\n", data.ea);
-	printf("F = %s\n", data.f);
-	printf("C = %s\n", data.c);
+	ft_printdata(data);
 	return (0);
 }
