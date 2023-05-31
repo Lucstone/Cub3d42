@@ -6,14 +6,14 @@
 #    By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/17 11:56:41 by lnaidu            #+#    #+#              #
-#    Updated: 2023/05/27 15:56:47 by hdiot            ###   ########.fr        #
+#    Updated: 2023/05/31 15:50:17 by hdiot            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = Cub3d
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
-SRC = main.c
+SRC = main.c hooks.c algo_dda.c 
 MLX	= -lmlx -Imlx_linux -lXext -lX11 -lm -lz -OFast
 
 #COLORS

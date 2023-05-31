@@ -6,7 +6,7 @@
 /*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:31:24 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/05/30 10:30:57 by hdiot            ###   ########.fr       */
+/*   Updated: 2023/05/31 16:58:50 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <ctype.h>
+
+extern int worldMap[24][24];
 
 typedef struct s_op
 {
@@ -73,13 +75,26 @@ typedef struct s_data
 
 typedef struct s_cub
 {
-	int	he;
-	int	wi;
+	int		he;
+	int		wi;
 	void	*mlx;
 	void	*win;
 	t_op	ray;
 	t_data	*img;
 	t_dda	dda;
 }	t_cub;
+
+
+int		keyhook(int keycode, t_cub *cub);
+int		exitcub(int keycode, t_cub *cub);
+void	keycode_rotate(int keycode, t_cub *cub);
+void	keycode_move(int keycode, t_cub *cub);
+void	raytracing(t_cub	*cub);
+
+void	get_sidedist(t_cub *cub, t_dda *dda);
+void	get_disttowall(t_cub *cub, t_dda *dda);
+void	ft_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	get_colors(t_cub *cub, t_dda *dda, int x);
+void	dda_algo(t_cub	*cub, t_dda *dda, int x);
 
 #endif
