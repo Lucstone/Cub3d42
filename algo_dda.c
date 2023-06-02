@@ -6,7 +6,7 @@
 /*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 18:38:29 by hdiot             #+#    #+#             */
-/*   Updated: 2023/06/02 14:43:34 by hdiot            ###   ########.fr       */
+/*   Updated: 2023/06/02 17:16:16 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,13 @@ void	ft_mlx_pixel_put(t_data *data, int x, int y, int color)
 void	get_texturecolor(t_cub *cub, t_dda *dda)
 {
 	if (cub->dda.wallside == 1 && (dda->mapy > cub->ray.pospy))
-		cub->text.tcolor = (int *)cub->text.s;
+		cub->text.tcolor = (int *)cub->text.s->addr;
 	else if (cub->dda.wallside == 1 && (dda->mapy < cub->ray.pospy))
-		cub->text.tcolor = (int *)cub->text.n;
+		cub->text.tcolor = (int *)cub->text.n->addr;
 	else if (cub->dda.wallside == 0 && (dda->mapx > cub->ray.pospx))
-		cub->text.tcolor = (int *)cub->text.e;
+		cub->text.tcolor = (int *)cub->text.e->addr;
 	else 
-		cub->text.tcolor = (int *)cub->text.w;
+		cub->text.tcolor = (int *)cub->text.w->addr;
 }
 
 void	get_colors(t_cub *cub, t_dda *dda, int x)

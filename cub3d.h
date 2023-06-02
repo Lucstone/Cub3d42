@@ -6,7 +6,7 @@
 /*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:31:24 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/06/02 13:35:17 by hdiot            ###   ########.fr       */
+/*   Updated: 2023/06/02 17:11:42 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,25 @@
 
 extern int worldMap[24][24];
 
+typedef struct s_data
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_data;
+
 typedef struct s_tex
 {
 	int		texx;
 	int		texy;
 	double	step;
 	double	texpos;
-	void	*s;
-	void	*n;
-	void	*e;
-	void	*w;	
+	t_data	*s;
+	t_data	*n;
+	t_data	*e;
+	t_data	*w;	
 	int		*tcolor;
 }	t_tex;
 
@@ -79,14 +88,6 @@ typedef struct s_dda
 	int		draw_end;
 }	t_dda;
 
-typedef struct s_data
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_data;
 
 typedef struct s_cub
 {

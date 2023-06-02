@@ -6,7 +6,7 @@
 /*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:31:10 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/06/02 14:32:45 by hdiot            ###   ########.fr       */
+/*   Updated: 2023/06/02 17:14:45 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,10 @@ void	init_op(t_cub *cub)
 	cub->img = malloc(sizeof(t_data));
 	if (!cub->img)
 		exit(EXIT_FAILURE);
+	cub->text.e = malloc(sizeof(t_data));
+	cub->text.s = malloc(sizeof(t_data));
+	cub->text.n = malloc(sizeof(t_data));
+	cub->text.w = malloc(sizeof(t_data));
 	cub->img->img = mlx_new_image(cub->mlx, cub->wi, cub->he);
 	cub->img->addr = mlx_get_data_addr(cub->img->img, \
 	&cub->img->bits_per_pixel, &cub->img->line_length, &cub->img->endian);
@@ -90,22 +94,22 @@ int	close_all(t_cub *cub)
 
 void	inittexture(t_cub *cub)
 {
-	cub->text.n = mlx_xpm_file_to_image(cub->mlx, "./bluestone.xpm", \
+	cub->text.n->img = mlx_xpm_file_to_image(cub->mlx, "./bluestone.xpm", \
 		&cub->ray.texwi, &cub->ray.texhe);
-	cub->text.s = mlx_xpm_file_to_image(cub->mlx, "./wood.xpm", \
+	cub->text.s->img = mlx_xpm_file_to_image(cub->mlx, "./wood.xpm", \
 		&cub->ray.texwi, &cub->ray.texhe);
-	cub->text.w = mlx_xpm_file_to_image(cub->mlx, "./greystone.xpm", \
+	cub->text.w->img = mlx_xpm_file_to_image(cub->mlx, "./greystone.xpm", \
 		&cub->ray.texwi, &cub->ray.texhe);
-	cub->text.e = mlx_xpm_file_to_image(cub->mlx, "./redbrick.xpm", \
+	cub->text.e->img = mlx_xpm_file_to_image(cub->mlx, "./redbrick.xpm", \
 		&cub->ray.texwi, &cub->ray.texhe);
-	cub->text.n = mlx_get_data_addr(cub->text.n, &cub->img->bits_per_pixel, \
-		&cub->img->line_length, &cub->img->endian);
-	cub->text.w = mlx_get_data_addr(cub->text.w, &cub->img->bits_per_pixel, \
-		&cub->img->line_length, &cub->img->endian);
-	cub->text.e = mlx_get_data_addr(cub->text.e, &cub->img->bits_per_pixel, \
-		&cub->img->line_length, &cub->img->endian);
-	cub->text.s = mlx_get_data_addr(cub->text.s, &cub->img->bits_per_pixel, \
-		&cub->img->line_length, &cub->img->endian);
+	cub->text.n->addr = mlx_get_data_addr(cub->text.n->img, &cub->text.n->bits_per_pixel, \
+		&cub->text.n->line_length, &cub->text.n->endian);
+	cub->text.w->addr = mlx_get_data_addr(cub->text.w->img, &cub->text.w->bits_per_pixel, \
+		&cub->text.w->line_length, &cub->text.w->endian);
+	cub->text.e->addr = mlx_get_data_addr(cub->text.e->img, &cub->text.e->bits_per_pixel, \
+		&cub->text.e->line_length, &cub->text.e->endian);
+	cub->text.s->addr = mlx_get_data_addr(cub->text.s->img, &cub->text.s->bits_per_pixel, \
+		&cub->text.s->line_length, &cub->text.s->endian);
 	
 }
 
