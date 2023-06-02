@@ -6,7 +6,7 @@
 /*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 18:38:29 by hdiot             #+#    #+#             */
-/*   Updated: 2023/05/31 15:53:43 by hdiot            ###   ########.fr       */
+/*   Updated: 2023/06/02 14:43:34 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,23 +78,24 @@ void	ft_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+void	get_texturecolor(t_cub *cub, t_dda *dda)
+{
+	if (cub->dda.wallside == 1 && (dda->mapy > cub->ray.pospy))
+		cub->text.tcolor = (int *)cub->text.s;
+	else if (cub->dda.wallside == 1 && (dda->mapy < cub->ray.pospy))
+		cub->text.tcolor = (int *)cub->text.n;
+	else if (cub->dda.wallside == 0 && (dda->mapx > cub->ray.pospx))
+		cub->text.tcolor = (int *)cub->text.e;
+	else 
+		cub->text.tcolor = (int *)cub->text.w;
+}
+
 void	get_colors(t_cub *cub, t_dda *dda, int x)
 {
 	int	y;
 	int	j;
 	int	k;
-	int	color;
-	
-	if (worldMap[dda->mapx][dda->mapy] == 1)
-		color = 0xFF0000;
-	if (worldMap[dda->mapx][dda->mapy] == 2)
-		color = 0xFF00;
-	if (worldMap[dda->mapx][dda->mapy] == 3)
-		color = 0xFF000;
-	if (worldMap[dda->mapx][dda->mapy] == 4)
-		color = 0xFF0;
-	if (dda->wallside == 1)
-		color = color / 2;
+
 	j = 0;
 	y = dda->draw_start;
 	while (j < y)
@@ -104,15 +105,36 @@ void	get_colors(t_cub *cub, t_dda *dda, int x)
 	}
 	while (y < dda->draw_end)
 	{	
-		ft_mlx_pixel_put(cub->img, x, y, color);
+		cub->text.texy = (int)cub->text.texpos & (cub->ray.texhe - 1);
+		cub->text.texpos += cub->text.step;
+		ft_mlx_pixel_put(cub->img, x, y, cub->text.tcolor[cub->text.texy * cub->ray.texhe + cub->text.texx]);
 		y++;
-	}	
+	}
 	k = y;
 	while (k < cub->he)
 	{	
 		ft_mlx_pixel_put(cub->img, x, k, 0x8B4513);
 		k++;
 	}
+}
+
+void	get_bittexture(t_cub *cub, t_dda *dda)
+{
+	double	wallx;
+	
+	if (dda->wallside == 0)
+		wallx = cub->ray.pospy + dda->ppwall_dist * cub->ray.r_diry;
+	else
+	 	wallx = cub->ray.pospx + dda->ppwall_dist * cub->ray.r_dirx;
+	wallx -= floor(wallx);
+	cub->text.texx = (int)(wallx * cub->ray.texwi);
+	if (cub->dda.wallside == 0 && cub->ray.r_dirx > 0)
+		cub->text.texx = cub->ray.texwi - cub->text.texx - 1;
+	if (cub->dda.wallside == 1 && cub->ray.r_dirx < 0)
+		cub->text.texx = cub->ray.texwi - cub->text.texx - 1;
+	cub->text.step = 1.0 * cub->ray.texhe / dda->linehe;
+	cub->text.texpos = (dda->draw_start - cub->he / 2 + dda->linehe / 2) \
+		* cub->text.step;
 }
 
 void	dda_algo(t_cub	*cub, t_dda *dda, int x)
@@ -124,5 +146,7 @@ void	dda_algo(t_cub	*cub, t_dda *dda, int x)
 	dda->is_wall = 0;
 	get_sidedist(cub, dda);
 	get_disttowall(cub, dda);
+	get_bittexture(cub, dda);
+	get_texturecolor(cub, dda);
 	get_colors(cub, dda, x);
 }

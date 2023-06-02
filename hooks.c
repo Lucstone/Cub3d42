@@ -6,7 +6,7 @@
 /*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 18:29:38 by hdiot             #+#    #+#             */
-/*   Updated: 2023/05/31 18:38:48 by hdiot            ###   ########.fr       */
+/*   Updated: 2023/05/31 19:44:58 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,8 @@ void	keycode_rotate(int keycode, t_cub *cub)
 	}
 }
 
-int	exitcub(int keycode, t_cub *cub)
+void	exitcub(t_cub *cub)
 {
-	(void)keycode;
 	mlx_clear_window(cub->mlx, cub->win);
 	mlx_destroy_window(cub->mlx, cub->win);
 	mlx_destroy_image(cub->mlx, cub->img->img);
@@ -79,7 +78,7 @@ int	exitcub(int keycode, t_cub *cub)
 int	keyhook(int keycode, t_cub *cub)
 {
 	if (keycode == 65307)
-		exitcub(keycode, cub);
+		exitcub(cub);
 	keycode_move(keycode, cub);
 	keycode_rotate(keycode, cub);
 	mlx_clear_window(cub->mlx, cub->win);

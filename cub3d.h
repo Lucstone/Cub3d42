@@ -6,7 +6,7 @@
 /*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:31:24 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/05/31 16:58:50 by hdiot            ###   ########.fr       */
+/*   Updated: 2023/06/02 13:35:17 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,27 @@
 
 extern int worldMap[24][24];
 
+typedef struct s_tex
+{
+	int		texx;
+	int		texy;
+	double	step;
+	double	texpos;
+	void	*s;
+	void	*n;
+	void	*e;
+	void	*w;	
+	int		*tcolor;
+}	t_tex;
+
 typedef struct s_op
 {
 	int		mapw;
 	int		maph;
 	int		screenw;
 	int		screenh;
+	int		texhe;
+	int		texwi;
 	double	camx;
 	double	pospx;
 	double	pospy;
@@ -79,6 +94,7 @@ typedef struct s_cub
 	int		wi;
 	void	*mlx;
 	void	*win;
+	t_tex	text;
 	t_op	ray;
 	t_data	*img;
 	t_dda	dda;
@@ -86,7 +102,7 @@ typedef struct s_cub
 
 
 int		keyhook(int keycode, t_cub *cub);
-int		exitcub(int keycode, t_cub *cub);
+void		exitcub(t_cub *cub);
 void	keycode_rotate(int keycode, t_cub *cub);
 void	keycode_move(int keycode, t_cub *cub);
 void	raytracing(t_cub	*cub);
