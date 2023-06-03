@@ -6,7 +6,7 @@
 /*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:31:24 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/06/02 17:11:42 by hdiot            ###   ########.fr       */
+/*   Updated: 2023/06/03 08:21:36 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ typedef struct s_dda
 	double	delta_y;
 	double	side_disx;
 	double	side_disy;
-	int		stepX;
-	int		stepY;
+	int		stepx;
+	int		stepy;
 	int		walldis;
 	int		is_wall;
 	int		wallside;
@@ -88,6 +88,18 @@ typedef struct s_dda
 	int		draw_end;
 }	t_dda;
 
+typedef struct s_info
+{
+	int		fl_r;
+	int		fl_g;
+	int		fl_b;
+	int		cel_r;
+	int		cel_g;
+	int		cel_b;
+	double	pos_x;
+	double	pos_y;
+	char	orientation;
+}	t_info;
 
 typedef struct s_cub
 {
@@ -95,23 +107,32 @@ typedef struct s_cub
 	int		wi;
 	void	*mlx;
 	void	*win;
+	t_info	info;
 	t_tex	text;
 	t_op	ray;
 	t_data	*img;
 	t_dda	dda;
 }	t_cub;
 
-
 int		keyhook(int keycode, t_cub *cub);
-void		exitcub(t_cub *cub);
+void	exitcub(t_cub *cub);
 void	keycode_rotate(int keycode, t_cub *cub);
 void	keycode_move(int keycode, t_cub *cub);
+void	move2(int keycode, t_cub *cub);
 void	raytracing(t_cub	*cub);
+void	orientation2(t_cub *cub);
+double	init_pos(double pos);
+void	orientation(t_cub *cub);
+void	inittexture(t_cub *cub);
+int		close_all(t_cub *cub);
 
+int		calculatergb(int r, int g, int b);
 void	get_sidedist(t_cub *cub, t_dda *dda);
 void	get_disttowall(t_cub *cub, t_dda *dda);
 void	ft_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	get_colors(t_cub *cub, t_dda *dda, int x);
 void	dda_algo(t_cub	*cub, t_dda *dda, int x);
+void	get_texturecolor(t_cub *cub, t_dda *dda);
+void	get_bittexture(t_cub *cub, t_dda *dda);
 
 #endif

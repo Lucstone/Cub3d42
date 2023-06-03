@@ -6,7 +6,7 @@
 /*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:31:10 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/06/02 17:14:45 by hdiot            ###   ########.fr       */
+/*   Updated: 2023/06/03 08:36:33 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,9 @@ void	init_op(t_cub *cub)
 	cub->ray.mapw = 24;
 	cub->ray.texwi = 64;
 	cub->ray.texhe = 64;
-	cub->ray.pospx = 22;
-	cub->ray.pospy = 12;
-	cub->ray.dirpx = -1;
-	cub->ray.dirpy = 0;
-	cub->ray.planex = 0;
-	cub->ray.planey = 0.66;
+	orientation(cub);
+	cub->ray.pospx = init_pos(cub->info.pos_x);
+	cub->ray.pospy = init_pos(cub->info.pos_y);
 	cub->ray.rotspeed = 0.06;
 	cub->ray.mvspeed = 0.2;
 	cub->mlx = mlx_init();
@@ -62,10 +59,6 @@ void	init_op(t_cub *cub)
 	cub->img = malloc(sizeof(t_data));
 	if (!cub->img)
 		exit(EXIT_FAILURE);
-	cub->text.e = malloc(sizeof(t_data));
-	cub->text.s = malloc(sizeof(t_data));
-	cub->text.n = malloc(sizeof(t_data));
-	cub->text.w = malloc(sizeof(t_data));
 	cub->img->img = mlx_new_image(cub->mlx, cub->wi, cub->he);
 	cub->img->addr = mlx_get_data_addr(cub->img->img, \
 	&cub->img->bits_per_pixel, &cub->img->line_length, &cub->img->endian);
@@ -73,50 +66,42 @@ void	init_op(t_cub *cub)
 
 void	raytracing(t_cub	*cub)
 {
-	int x;
+	int	x;
 
 	x = -1;
 	while (++x < cub->wi)
 	{
 		cub->ray.camx = 2 * x / (double)cub->wi - 1;
 		cub->ray.r_dirx = cub->ray.dirpx + cub->ray.planex * cub->ray.camx;
-		cub->ray.r_diry = cub->ray.dirpy + cub->ray.planey * cub->ray.camx; //calcul du rayon de la camera
-		dda_algo(cub, &cub->dda, x); //algo distance mur - joueur
+		cub->ray.r_diry = cub->ray.dirpy + cub->ray.planey * cub->ray.camx;
+		dda_algo(cub, &cub->dda, x);
 	}
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img->img, 0, 0);
 }
 
-int	close_all(t_cub *cub)
+void	parse(t_cub *cub)
 {
-	exitcub(cub);
-	return (0);
+	cub->info.orientation = 'W';
+	cub->info.pos_x = 22;
+	cub->info.pos_y = 12;
+	cub->info.cel_r = 135;
+	cub->info.cel_g = 206;
+	cub->info.cel_b = 235;
+	cub->info.fl_r = 165;
+	cub->info.fl_g = 42;
+	cub->info.fl_b = 42;
 }
 
-void	inittexture(t_cub *cub)
+int	calculatergb(int r, int g, int b)
 {
-	cub->text.n->img = mlx_xpm_file_to_image(cub->mlx, "./bluestone.xpm", \
-		&cub->ray.texwi, &cub->ray.texhe);
-	cub->text.s->img = mlx_xpm_file_to_image(cub->mlx, "./wood.xpm", \
-		&cub->ray.texwi, &cub->ray.texhe);
-	cub->text.w->img = mlx_xpm_file_to_image(cub->mlx, "./greystone.xpm", \
-		&cub->ray.texwi, &cub->ray.texhe);
-	cub->text.e->img = mlx_xpm_file_to_image(cub->mlx, "./redbrick.xpm", \
-		&cub->ray.texwi, &cub->ray.texhe);
-	cub->text.n->addr = mlx_get_data_addr(cub->text.n->img, &cub->text.n->bits_per_pixel, \
-		&cub->text.n->line_length, &cub->text.n->endian);
-	cub->text.w->addr = mlx_get_data_addr(cub->text.w->img, &cub->text.w->bits_per_pixel, \
-		&cub->text.w->line_length, &cub->text.w->endian);
-	cub->text.e->addr = mlx_get_data_addr(cub->text.e->img, &cub->text.e->bits_per_pixel, \
-		&cub->text.e->line_length, &cub->text.e->endian);
-	cub->text.s->addr = mlx_get_data_addr(cub->text.s->img, &cub->text.s->bits_per_pixel, \
-		&cub->text.s->line_length, &cub->text.s->endian);
-	
+	return (r << 16 | g << 8 | b);
 }
 
 void	cub3d(void)
 {
 	t_cub	cub;
 
+	parse(&cub);
 	init_op(&cub);
 	inittexture(&cub);
 	raytracing(&cub);
@@ -125,7 +110,7 @@ void	cub3d(void)
 	mlx_loop(cub.mlx);
 }
 
-int main(void)
+int	main(void)
 {
 	cub3d();
 	return (0);
