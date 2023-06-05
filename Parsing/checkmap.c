@@ -6,7 +6,7 @@
 /*   By: lnaidu <lnaidu@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 12:55:08 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/05/31 15:07:20 by lnaidu           ###   ########.fr       */
+/*   Updated: 2023/06/02 17:33:40 by lnaidu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,15 @@ int	ft_checkint(char *str)
 		while(arg[i][j])
 		{
 			if (!(arg[i][j] >= '0' && arg[i][j] <= '9'))
-				return (printf("Error\nnot a valid color\n"), 1);
+				return (free (arg),printf("Error\nnot a valid color\n"), 1);
 			j++;
 		}
 		i++;
 	}
+	i = 0;
+	while(arg[i])
+		free(arg[i++]);
+	free (arg);
 	return (0);
 }
 

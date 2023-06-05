@@ -6,7 +6,7 @@
 /*   By: lnaidu <lnaidu@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:31:10 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/05/31 17:39:11 by lnaidu           ###   ########.fr       */
+/*   Updated: 2023/06/02 17:34:14 by lnaidu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,7 @@ int	recupmap(t_map *data, char *str)
 		&& data->countwe == 1 && data->countf == 1 && data->countc == 1)
 	{
 		if (str[i] == '1')
-		{
-			/*while (str[i])
-			{
-				if ((str[i] == 32 || str[i] == '1' || str[i] == 10))
-					i++;
-			}*/
 			return (0);
-		}
 	}
 	return (1);
 }
@@ -109,9 +102,9 @@ int	ft_checkmap(char *map, t_map *data)
 {
 	int		fd;
 	char	*gnl;
-	int		i;
+	//int		i;
 
-	i = 0;
+	//i = 0;
 	fd = open(map, O_RDONLY);
 	gnl = get_next_line(fd);
 	while (gnl != NULL)
@@ -120,6 +113,7 @@ int	ft_checkmap(char *map, t_map *data)
 			break ;
 		if (ft_get_texture(data, gnl) == 1)
 			return (1);
+		free(gnl);
 		gnl = get_next_line(fd);
 	}
 	if (ft_checkalltext(data) == 1)
@@ -129,18 +123,21 @@ int	ft_checkmap(char *map, t_map *data)
 	return (0);
 }
 
-void	ft_printdata(t_map data)
+void	ft_printdata(t_map *data)
 {
-	printf("x = %ds\n", data.x);
-	printf("NO = %s81292\n", data.no);
-	printf("SO = %s81292\n", data.so);
-	printf("WE = %s81292\n", data.we);
-	printf("EA = %s81292\n", data.ea);
-	printf("F = %s81292\n", data.f);
-	printf("C = %s81292\n", data.c);
+	printf("x = %ds\n", data->x);
+	printf("NO = %s81292\n", data->no);
+	printf("SO = %s81292\n", data->so);
+	printf("WE = %s81292\n", data->we);
+	printf("EA = %s81292\n", data->ea);
+	printf("F = %s81292\n", data->f);
+	printf("C = %s81292\n", data->c);
 	int i = 0;
-	while (data.map[i])
-		printf("%s\n", data.map[i++]);
+	while (data->map[i])
+	{
+		printf("%s\n", data->map[i]);
+		i++;
+	}
 }
 
 int	main(int ac, char **av)
@@ -152,6 +149,18 @@ int	main(int ac, char **av)
 	ft_initdata(&data);
 	if (ft_checkmap(av[1], &data) == 1)
 		return (1);
-	ft_printdata(data);
+	ft_printdata(&data);
+	int	i = 0;
+	while (data.map[i])
+	{
+		free(data.map[i]);
+		i++;
+	}
+	free(data.map[i]);
+	free(data.no);
+	free(data.so);
+	free(data.we);
+	free(data.ea);
+	system("leaks Cub3d");
 	return (0);
 }
