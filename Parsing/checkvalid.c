@@ -6,8 +6,61 @@
 /*   By: lnaidu <lnaidu@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 12:55:08 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/05/26 16:27:59 by lnaidu           ###   ########.fr       */
+/*   Updated: 2023/06/05 18:08:11 by lnaidu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+t_map	ft_takecoord(t_map data, char **str)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (str[i])
+	{
+		j = 0;
+		while (str[i][j])
+		{
+			if ((str[i][j] == 'N' || str[i][j] == 'S'
+					|| str[i][j] == 'E' || str[i][j] == 'W'))
+			{
+				data.x = i;
+				data.y = j;
+				data.orientation = str[i][j];
+			}
+			j++;
+		}
+		i++;
+	}
+	return (data);
+}
+
+int	ft_checkwall(char **map, int i, int j, int l)
+{
+	int	len;
+
+	i = 0;
+	while (map[l])
+		l++;
+	while (map[i])
+	{
+		j = 0;
+		len = ft_strlen(&map[i][j]);
+		while (map[i][j])
+		{
+			if (map[i][j] == '0')
+			{
+				if (j == 0 || i == 0 || i == (l - 1) || len == j)
+					return (printf("Error\nWalls not valid\n"), 1);
+				if (map[i + 1][j] == 32 || map[i - 1][j] == 32
+						|| map[i][j + 1] == 32 || map[i][j - 1] == 32)
+					return (printf("Error\nWall not valid\n"), 1);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}

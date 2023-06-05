@@ -6,7 +6,7 @@
 /*   By: lnaidu <lnaidu@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 12:55:08 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/06/02 17:33:40 by lnaidu           ###   ########.fr       */
+/*   Updated: 2023/06/05 18:23:01 by lnaidu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,38 +40,33 @@ int	checkerr(char *file, int ac)
 	return (0);
 }
 
-int	ft_checkint(char *str)
+int	ft_checkint(char *str, int i, int j, int l)
 {
-	char **arg;
-	int	i = 0;
-	int	j = 0;
+	char	**arg;
 
 	arg = ft_split(str, ',');
-	while (str[i])
+	while (str[l])
 	{
-		if (str[i] == ',')
+		if (str[l++] == ',')
 			j++;
-		i++;
 	}
 	if (j != 2)
 		return (printf("Error\nnot a valid color\n"), 1);
-	i = 0;
-	j = 0;
-	while(arg[i])
+	while (arg[i])
 	{
-		while(arg[i][j])
+		j = 0;
+		while (arg[i][j])
 		{
 			if (!(arg[i][j] >= '0' && arg[i][j] <= '9'))
-				return (free (arg),printf("Error\nnot a valid color\n"), 1);
+				return (free(arg), printf("Error\nnot a valid color\n"), 1);
 			j++;
 		}
 		i++;
 	}
 	i = 0;
-	while(arg[i])
+	while (arg[i])
 		free(arg[i++]);
-	free (arg);
-	return (0);
+	return (free(arg), 0);
 }
 
 int	ft_checkalltext(t_map *data)
@@ -84,9 +79,9 @@ int	ft_checkalltext(t_map *data)
 		return (1);
 	if (ft_checkopen(data->we) == 1)
 		return (1);
-	if (ft_checkint(data->f) == 1)
+	if (ft_checkint(data->f, 0, 0, 0) == 1)
 		return (1);
-	if (ft_checkint(data->c) == 1)
+	if (ft_checkint(data->c, 0, 0, 0) == 1)
 		return (1);
 	return (0);
 }

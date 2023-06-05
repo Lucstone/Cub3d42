@@ -6,7 +6,7 @@
 /*   By: lnaidu <lnaidu@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:31:24 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/05/31 14:34:13 by lnaidu           ###   ########.fr       */
+/*   Updated: 2023/06/05 17:58:04 by lnaidu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,11 @@ typedef struct s_map
 	char	*f;
 	char	*c;
 	char	**map;
+	char	orientation;
 	int		x;
 	int		y;
 	int		j;
+	int		**tab;
 }					t_map;
 
 int	checkerr(char *file, int ac);
@@ -51,5 +53,10 @@ int	ft_walltextea(char *crd, char *str, t_map *data, int i);
 int	ft_walltextf(char *crd, char *str, t_map *data, int i);
 int	ft_walltextc(char *crd, char *str, t_map *data, int i);
 int	ft_checkalltext(t_map *data);
+void	ft_freeall(t_map data);
+t_map	ft_takecoord(t_map data, char **str);
+void	ft_printdata(t_map data, char **d);
+int	ft_checkwall(char **map, int i, int j, int l);
+t_map	ft_array(t_map *data);
 
 #endif
