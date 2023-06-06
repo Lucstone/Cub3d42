@@ -6,7 +6,7 @@
 /*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:31:24 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/06/06 12:34:20 by hdiot            ###   ########.fr       */
+/*   Updated: 2023/06/06 13:50:15 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,31 @@
 # include <stdlib.h>
 # include <ctype.h>
 
-extern int worldMap[24][24];
+typedef struct s_map
+{
+	int		countno;
+	int		countso;
+	int		countwe;
+	int		countea;
+	int		countf;
+	int		countc;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	char	*f;
+	char	*c;
+	char	**map;
+	char	orientation;
+	int		x;
+	int		y;
+	int		j;
+	int		**tab;
+	int		rgbf[4];
+	int		rgbc[4];
+	int		longe;
+	int		large;
+}					t_map;
 
 typedef struct s_data
 {
@@ -94,7 +118,7 @@ typedef struct s_info
 	int		cel[3];
 	double	pos_x;
 	double	pos_y;
-	char	orientation;
+	char	orient;
 }	t_info;
 
 typedef struct s_cub
@@ -108,9 +132,29 @@ typedef struct s_cub
 	t_op	ray;
 	t_data	*img;
 	t_dda	dda;
+	t_map	data;
 }	t_cub;
 
+int		checkerr(char *file, int ac);
+int		parsing(int ac, char **av, t_map *data);
+int		ft_walltextno(char *crd, char *str, t_map *data, int i);
+int		ft_walltextso(char *crd, char *str, t_map *data, int i);
+int		ft_walltextwe(char *crd, char *str, t_map *data, int i);
+int		ft_walltextea(char *crd, char *str, t_map *data, int i);
+int		ft_walltextf(char *crd, char *str, t_map *data, int i);
+int		ft_walltextc(char *crd, char *str, t_map *data, int i);
+int		ft_checkalltext(t_map *data);
+void	ft_freeall(t_map data);
+t_map	ft_takecoord(t_map *data, char **str);
+void	ft_printdata(t_map data, char **d);
+int		ft_checkwall(char **map, int i, int j, int l);
+t_map	ft_array(t_map *data);
+void	ft_freechar(t_map data);
+int		ft_checkcount(t_map *data);
+void	ft_initrgb(t_map *data);
+
 int		keyhook(int keycode, t_cub *cub);
+void	recupposp(t_cub *cub, int x, int y, char pp);
 void	exitcub(t_cub *cub);
 void	keycode_rotate(int keycode, t_cub *cub);
 void	keycode_move(int keycode, t_cub *cub);

@@ -6,14 +6,14 @@
 #    By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/17 11:56:41 by lnaidu            #+#    #+#              #
-#    Updated: 2023/06/06 11:24:49 by hdiot            ###   ########.fr        #
+#    Updated: 2023/06/06 13:05:10 by hdiot            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = Cub3d
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
-SRC = main.c hooks.c algo_dda.c recupinfo.c texture_utils.c recupinfo2.c
+SRC = main.c parser.c hooks.c algo_dda.c recupinfo.c texture_utils.c recupinfo2.c ./Parsing/checkmap.c ./Parsing/walltext.c ./Parsing/walltext2.c ./Parsing/free.c ./Parsing/checkvalid.c ./Parsing/array.c
 MLX	= -lmlx -lm -lz -OFast -framework OpenGL -framework AppKit
 
 #COLORS

@@ -6,7 +6,7 @@
 /*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 18:29:38 by hdiot             #+#    #+#             */
-/*   Updated: 2023/06/06 10:22:04 by hdiot            ###   ########.fr       */
+/*   Updated: 2023/06/06 16:49:21 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 
 void	keycode_move(int keycode, t_cub *cub)
 {
-	if (keycode == 13)
+	if (keycode == 0)
 	{
-		if (worldMap[(int)(cub->ray.pospx + cub->ray.dirpx \
+		if (cub->data.tab[(int)(cub->ray.pospx + cub->ray.dirpx \
 			* (cub->ray.mvspeed + 0.1))][(int)cub->ray.pospy] == 0)
 			cub->ray.pospx += cub->ray.dirpx * cub->ray.mvspeed;
-		if (worldMap[(int)cub->ray.pospx][(int)(cub->ray.pospy \
+		if (cub->data.tab[(int)cub->ray.pospx][(int)(cub->ray.pospy \
 			+ cub->ray.dirpy * (cub->ray.mvspeed + 0.1))] == 0)
 			cub->ray.pospy += cub->ray.dirpy * cub->ray.mvspeed;
 	}
-	if (keycode == 2)
+	if (keycode == 1)
 	{
-		if (worldMap[(int)cub->ray.pospx][(int)(cub->ray.pospy \
+		if (cub->data.tab[(int)cub->ray.pospx][(int)(cub->ray.pospy \
 			+ cub->ray.dirpx * (cub->ray.mvspeed + 0.1))] == 0)
 			cub->ray.pospy += cub->ray.dirpx * cub->ray.mvspeed;
-		if (worldMap[(int)(cub->ray.pospx - cub->ray.dirpy \
+		if (cub->data.tab[(int)(cub->ray.pospx - cub->ray.dirpy \
 			* (cub->ray.mvspeed + 0.1))][(int)cub->ray.pospy] == 0)
 			cub->ray.pospx -= cub->ray.dirpy * cub->ray.mvspeed;
 	}
@@ -84,6 +84,7 @@ void	exitcub(t_cub *cub)
 
 int	keyhook(int keycode, t_cub *cub)
 {
+	printf("keycode is %d\n", keycode);
 	if (keycode == 53)
 		exitcub(cub);
 	keycode_move(keycode, cub);

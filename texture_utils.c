@@ -6,7 +6,7 @@
 /*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 07:49:32 by hdiot             #+#    #+#             */
-/*   Updated: 2023/06/06 11:18:27 by hdiot            ###   ########.fr       */
+/*   Updated: 2023/06/06 16:33:37 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,22 @@ void	get_bittexture(t_cub *cub, t_dda *dda)
 void	get_texturecolor(t_cub *cub, t_dda *dda)
 {
 	if (cub->dda.wallside == 1 && (dda->mapy > cub->ray.pospy))
-		cub->text.tcolor = (int *)cub->text.s->addr;
-	else if (cub->dda.wallside == 1 && (dda->mapy < cub->ray.pospy))
-		cub->text.tcolor = (int *)cub->text.n->addr;
-	else if (cub->dda.wallside == 0 && (dda->mapx > cub->ray.pospx))
 		cub->text.tcolor = (int *)cub->text.e->addr;
-	else
+	else if (cub->dda.wallside == 1 && (dda->mapy < cub->ray.pospy))
 		cub->text.tcolor = (int *)cub->text.w->addr;
+	else if (cub->dda.wallside == 0 && (dda->mapx > cub->ray.pospx))
+		cub->text.tcolor = (int *)cub->text.s->addr;
+	else
+		cub->text.tcolor = (int *)cub->text.n->addr;
 }
 
 void	initdatatexture(t_cub *cub)
 {
-	cub->text.w->img = mlx_xpm_file_to_image(cub->mlx, "./gstone.xpm", \
+	cub->text.w->img = mlx_xpm_file_to_image(cub->mlx, cub->data.we, \
 		&cub->ray.texwi, &cub->ray.texhe);
 	if (!cub->text.n->img)
 		exitcub(cub);
-	cub->text.e->img = mlx_xpm_file_to_image(cub->mlx, "./briani.xpm", \
+	cub->text.e->img = mlx_xpm_file_to_image(cub->mlx, cub->data.ea, \
 		&cub->ray.texwi, &cub->ray.texhe);
 	if (!cub->text.n->img)
 		exitcub(cub);
@@ -81,11 +81,11 @@ void	inittexture(t_cub *cub)
 	cub->text.w = malloc(sizeof(t_data));
 	if (!cub->text.w)
 		perror("Malloc error\n");
-	cub->text.n->img = mlx_xpm_file_to_image(cub->mlx, "./redbrick.xpm", \
+	cub->text.n->img = mlx_xpm_file_to_image(cub->mlx, cub->data.no, \
 		&cub->ray.texwi, &cub->ray.texhe);
 	if (!cub->text.n->img)
 		exitcub(cub);
-	cub->text.s->img = mlx_xpm_file_to_image(cub->mlx, "./wood.xpm", \
+	cub->text.s->img = mlx_xpm_file_to_image(cub->mlx, cub->data.so, \
 		&cub->ray.texwi, &cub->ray.texhe);
 	if (!cub->text.n->img)
 		exitcub(cub);

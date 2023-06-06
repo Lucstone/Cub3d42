@@ -6,7 +6,7 @@
 /*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 18:38:29 by hdiot             #+#    #+#             */
-/*   Updated: 2023/06/06 12:29:39 by hdiot            ###   ########.fr       */
+/*   Updated: 2023/06/06 16:38:58 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	get_disttowall(t_cub *cub, t_dda *dda)
 			dda->mapy += dda->stepy;
 			dda->wallside = 1;
 		}
-		if (worldMap[dda->mapx][dda->mapy] == 1)
+		if (cub->data.tab[dda->mapx][dda->mapy] == 1)
 			dda->is_wall = 1;
 	}
 	check_wall(cub, dda);
@@ -95,7 +95,7 @@ void	get_colors(t_cub *cub, t_dda *dda, int x, int j)
 	}
 	k = y;
 	while (k < cub->he)
-	{	
+	{
 		ft_mlx_pixel_put(cub->img, x, k, \
 			calculatergb(cub->info.fl[0], cub->info.fl[1], cub->info.fl[2]));
 		k++;
@@ -108,6 +108,7 @@ void	dda_algo(t_cub	*cub, t_dda *dda, int x)
 	dda->mapy = (int)cub->ray.pospy;
 	dda->delta_x = fabs(1 / cub->ray.r_dirx);
 	dda->delta_y = fabs(1 / cub->ray.r_diry);
+	printf("cub->ray.r_dirx %f\n", cub->ray.r_dirx);
 	dda->is_wall = 0;
 	get_sidedist(cub, dda);
 	get_disttowall(cub, dda);

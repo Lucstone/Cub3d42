@@ -6,47 +6,20 @@
 /*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:31:10 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/06/06 12:30:20 by hdiot            ###   ########.fr       */
+/*   Updated: 2023/06/06 16:50:43 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int worldMap[24][24] =
-{
-	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,1,1,1,1,0,0,0,0,0,1,0,1,0,1,0,0,0,1},
-	{1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1},
-	{1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,1,1,0,1,0,0,0,0,0,1,0,1,0,1,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,1,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,1,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,1,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,1,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-};
-
 void	init_op(t_cub *cub)
 {
-	cub->wi = 1080;
-	cub->he = 920;
-	recupmapsize(cub, 24, 24);
+	cub->wi = 640;
+	cub->he = 480;
+	recupmapsize(cub, cub->data.longe, cub->data.large);
 	cub->ray.texwi = 64;
 	cub->ray.texhe = 64;
+	recupposp(cub, cub->data.x, cub->data.y, cub->data.orientation);
 	orientation(cub);
 	cub->ray.pospx = init_pos(cub->info.pos_x);
 	cub->ray.pospy = init_pos(cub->info.pos_y);
@@ -80,37 +53,31 @@ void	raytracing(t_cub	*cub)
 
 void	parse(t_cub *cub)
 {
-	cub->info.orientation = 'W';
-	cub->info.pos_x = 22;
-	cub->info.pos_y = 12;
-	cub->info.cel[0] = 135;
-	cub->info.cel[1] = 206;
-	cub->info.cel[2] = 235;
-	cub->info.fl[0] = 165;
-	cub->info.fl[1] = 42;
-	cub->info.fl[2] = 42;
+	recup_color_cel(cub, cub->data.rgbc[0], cub->data.rgbc[1], \
+		cub->data.rgbc[2]);
+	recup_color_fl(cub, cub->data.rgbf[0], cub->data.rgbf[1], \
+		cub->data.rgbf[2]);
 }
 
-int	calculatergb(int r, int g, int b)
+void	cub3d(t_cub *cub)
 {
-	return (r << 16 | g << 8 | b);
+	parse(cub);
+	init_op(cub);
+	inittexture(cub);
+	raytracing(cub);
+	mlx_hook(cub->win, 2, 1L << 0, keyhook, cub);
+	mlx_hook(cub->win, 17, 0, close_all, cub);
+	mlx_loop(cub->mlx);
 }
 
-void	cub3d(void)
+int	main(int ac, char **av)
 {
 	t_cub	cub;
 
-	parse(&cub);
-	init_op(&cub);
-	inittexture(&cub);
-	raytracing(&cub);
-	mlx_hook(cub.win, 2, 1L << 0, keyhook, &cub);
-	mlx_hook(cub.win, 17, 0, close_all, &cub);
-	mlx_loop(cub.mlx);
-}
-
-int	main(void)
-{
-	cub3d();
+	if (checkerr(av[1], ac) == 1)
+		return (1);
+	if (parsing(ac, av, &cub.data) == 1)
+		return (1);
+	cub3d(&cub);
 	return (0);
 }
