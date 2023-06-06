@@ -6,7 +6,7 @@
 /*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:31:10 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/06/06 12:22:27 by hdiot            ###   ########.fr       */
+/*   Updated: 2023/06/06 12:30:20 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,12 @@ void	parse(t_cub *cub)
 	cub->info.orientation = 'W';
 	cub->info.pos_x = 22;
 	cub->info.pos_y = 12;
-	cub->info.cel_r = 135;
-	cub->info.cel_g = 206;
-	cub->info.cel_b = 235;
-	cub->info.fl_r = 165;
-	cub->info.fl_g = 42;
-	cub->info.fl_b = 42;
+	cub->info.cel[0] = 135;
+	cub->info.cel[1] = 206;
+	cub->info.cel[2] = 235;
+	cub->info.fl[0] = 165;
+	cub->info.fl[1] = 42;
+	cub->info.fl[2] = 42;
 }
 
 int	calculatergb(int r, int g, int b)

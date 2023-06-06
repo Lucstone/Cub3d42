@@ -6,7 +6,7 @@
 /*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:31:24 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/06/06 11:23:56 by hdiot            ###   ########.fr       */
+/*   Updated: 2023/06/06 12:34:20 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,8 @@ typedef struct s_dda
 
 typedef struct s_info
 {
-	int		fl_r;
-	int		fl_g;
-	int		fl_b;
-	int		cel_r;
-	int		cel_g;
-	int		cel_b;
+	int		fl[3];
+	int		cel[3];
 	double	pos_x;
 	double	pos_y;
 	char	orientation;
@@ -125,6 +121,8 @@ double	init_pos(double pos);
 void	orientation(t_cub *cub);
 void	inittexture(t_cub *cub);
 int		close_all(t_cub *cub);
+void	recup_color_fl(t_cub *cub, int r, int g, int b);
+void	recup_color_cel(t_cub *cub, int r, int g, int b);
 
 int		calculatergb(int r, int g, int b);
 void	get_sidedist(t_cub *cub, t_dda *dda);

@@ -6,7 +6,7 @@
 /*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 18:38:29 by hdiot             #+#    #+#             */
-/*   Updated: 2023/06/06 10:58:22 by hdiot            ###   ########.fr       */
+/*   Updated: 2023/06/06 12:29:39 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	get_colors(t_cub *cub, t_dda *dda, int x, int j)
 	while (j < y)
 	{	
 		ft_mlx_pixel_put(cub->img, x, j, \
-			calculatergb(cub->info.cel_r, cub->info.cel_g, cub->info.cel_b));
+			calculatergb(cub->info.cel[0], cub->info.cel[1], cub->info.cel[2]));
 		j++;
 	}	
 	while (y < dda->draw_end)
@@ -97,7 +97,7 @@ void	get_colors(t_cub *cub, t_dda *dda, int x, int j)
 	while (k < cub->he)
 	{	
 		ft_mlx_pixel_put(cub->img, x, k, \
-			calculatergb(cub->info.fl_r, cub->info.fl_g, cub->info.fl_b));
+			calculatergb(cub->info.fl[0], cub->info.fl[1], cub->info.fl[2]));
 		k++;
 	}		
 }
