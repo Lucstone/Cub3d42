@@ -6,7 +6,7 @@
 /*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 18:38:29 by hdiot             #+#    #+#             */
-/*   Updated: 2023/06/03 08:36:19 by hdiot            ###   ########.fr       */
+/*   Updated: 2023/06/06 10:58:22 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,18 @@ void	get_disttowall(t_cub *cub, t_dda *dda)
 	check_wall(cub, dda);
 }
 
-void	get_colors(t_cub *cub, t_dda *dda, int x)
+void	get_colors(t_cub *cub, t_dda *dda, int x, int j)
 {
 	int	y;
-	int	j;
 	int	k;
 
-	j = -1;
 	y = dda->draw_start;
-	while (++j < y)
+	while (j < y)
+	{	
 		ft_mlx_pixel_put(cub->img, x, j, \
 			calculatergb(cub->info.cel_r, cub->info.cel_g, cub->info.cel_b));
+		j++;
+	}	
 	while (y < dda->draw_end)
 	{	
 		cub->text.texy = (int)cub->text.texpos & (cub->ray.texhe - 1);
@@ -92,10 +93,13 @@ void	get_colors(t_cub *cub, t_dda *dda, int x)
 			* cub->ray.texhe + cub->text.texx]);
 		y++;
 	}
-	k = y - 1;
-	while (++k < cub->he)
+	k = y;
+	while (k < cub->he)
+	{	
 		ft_mlx_pixel_put(cub->img, x, k, \
 			calculatergb(cub->info.fl_r, cub->info.fl_g, cub->info.fl_b));
+		k++;
+	}		
 }
 
 void	dda_algo(t_cub	*cub, t_dda *dda, int x)
@@ -109,5 +113,5 @@ void	dda_algo(t_cub	*cub, t_dda *dda, int x)
 	get_disttowall(cub, dda);
 	get_bittexture(cub, dda);
 	get_texturecolor(cub, dda);
-	get_colors(cub, dda, x);
+	get_colors(cub, dda, x, 0);
 }

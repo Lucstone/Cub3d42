@@ -6,15 +6,15 @@
 #    By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/17 11:56:41 by lnaidu            #+#    #+#              #
-#    Updated: 2023/06/03 07:50:06 by hdiot            ###   ########.fr        #
+#    Updated: 2023/06/06 11:24:49 by hdiot            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = Cub3d
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
-SRC = main.c hooks.c algo_dda.c recupinfo.c texture_utils.c
-MLX	= -lmlx -Imlx_linux -lXext -lX11 -lm -lz -OFast
+SRC = main.c hooks.c algo_dda.c recupinfo.c texture_utils.c recupinfo2.c
+MLX	= -lmlx -lm -lz -OFast -framework OpenGL -framework AppKit
 
 #COLORS
 RED = \033[1;31m

@@ -6,7 +6,7 @@
 /*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:31:24 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/06/03 08:21:36 by hdiot            ###   ########.fr       */
+/*   Updated: 2023/06/06 11:23:56 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,9 +130,10 @@ int		calculatergb(int r, int g, int b);
 void	get_sidedist(t_cub *cub, t_dda *dda);
 void	get_disttowall(t_cub *cub, t_dda *dda);
 void	ft_mlx_pixel_put(t_data *data, int x, int y, int color);
-void	get_colors(t_cub *cub, t_dda *dda, int x);
+void	get_colors(t_cub *cub, t_dda *dda, int x, int j);
 void	dda_algo(t_cub	*cub, t_dda *dda, int x);
 void	get_texturecolor(t_cub *cub, t_dda *dda);
 void	get_bittexture(t_cub *cub, t_dda *dda);
+void	recupmapsize(t_cub *cub, int x, int y);
 
 #endif

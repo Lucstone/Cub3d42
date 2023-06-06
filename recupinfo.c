@@ -6,7 +6,7 @@
 /*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 07:43:06 by hdiot             #+#    #+#             */
-/*   Updated: 2023/06/03 08:15:44 by hdiot            ###   ########.fr       */
+/*   Updated: 2023/06/06 10:19:30 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	close_all(t_cub *cub)
 
 void	move2(int keycode, t_cub *cub)
 {
-	if (keycode == 115)
+	if (keycode == 1)
 	{
 		if (worldMap[(int)(cub->ray.pospx - cub->ray.dirpx \
 			* (cub->ray.mvspeed + 0.1))][(int)cub->ray.pospy] == 0)
@@ -29,7 +29,7 @@ void	move2(int keycode, t_cub *cub)
 			- cub->ray.dirpy * (cub->ray.mvspeed + 0.1))] == 0)
 			cub->ray.pospy -= cub->ray.dirpy * cub->ray.mvspeed;
 	}	
-	if (keycode == 113)
+	if (keycode == 0)
 	{
 		if (worldMap[(int)cub->ray.pospx][(int)(cub->ray.pospy \
 			- cub->ray.dirpx * (cub->ray.mvspeed + 0.1))] == 0)

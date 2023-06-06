@@ -6,7 +6,7 @@
 /*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 18:29:38 by hdiot             #+#    #+#             */
-/*   Updated: 2023/06/03 08:15:30 by hdiot            ###   ########.fr       */
+/*   Updated: 2023/06/06 10:22:04 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	keycode_move(int keycode, t_cub *cub)
 {
-	if (keycode == 122)
+	if (keycode == 13)
 	{
 		if (worldMap[(int)(cub->ray.pospx + cub->ray.dirpx \
 			* (cub->ray.mvspeed + 0.1))][(int)cub->ray.pospy] == 0)
@@ -23,7 +23,7 @@ void	keycode_move(int keycode, t_cub *cub)
 			+ cub->ray.dirpy * (cub->ray.mvspeed + 0.1))] == 0)
 			cub->ray.pospy += cub->ray.dirpy * cub->ray.mvspeed;
 	}
-	if (keycode == 100)
+	if (keycode == 2)
 	{
 		if (worldMap[(int)cub->ray.pospx][(int)(cub->ray.pospy \
 			+ cub->ray.dirpx * (cub->ray.mvspeed + 0.1))] == 0)
@@ -37,7 +37,7 @@ void	keycode_move(int keycode, t_cub *cub)
 
 void	keycode_rotate2(int keycode, t_cub *cub, double olddirx, double oldpl)
 {
-	if (keycode == 65363)
+	if (keycode == 124)
 	{
 		cub->ray.dirpx = cub->ray.dirpx * cos(cub->ray.rotspeed) \
 			- cub->ray.dirpy * sin(cub->ray.rotspeed);
@@ -57,7 +57,7 @@ void	keycode_rotate(int keycode, t_cub *cub)
 
 	olddirx = cub->ray.dirpx;
 	oldplanex = cub->ray.planex;
-	if (keycode == 65361)
+	if (keycode == 123)
 	{
 		cub->ray.dirpx = cub->ray.dirpx * cos(-cub->ray.rotspeed) \
 			- cub->ray.dirpy * sin(-cub->ray.rotspeed);
@@ -84,7 +84,7 @@ void	exitcub(t_cub *cub)
 
 int	keyhook(int keycode, t_cub *cub)
 {
-	if (keycode == 65307)
+	if (keycode == 53)
 		exitcub(cub);
 	keycode_move(keycode, cub);
 	keycode_rotate(keycode, cub);

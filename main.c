@@ -6,7 +6,7 @@
 /*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:31:10 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/06/03 08:36:33 by hdiot            ###   ########.fr       */
+/*   Updated: 2023/06/06 12:22:27 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,19 @@ int worldMap[24][24] =
 
 void	init_op(t_cub *cub)
 {
-	cub->wi = 640;
-	cub->he = 480;
-	cub->ray.maph = 24;
-	cub->ray.mapw = 24;
+	cub->wi = 1080;
+	cub->he = 920;
+	recupmapsize(cub, 24, 24);
 	cub->ray.texwi = 64;
 	cub->ray.texhe = 64;
 	orientation(cub);
 	cub->ray.pospx = init_pos(cub->info.pos_x);
 	cub->ray.pospy = init_pos(cub->info.pos_y);
 	cub->ray.rotspeed = 0.06;
-	cub->ray.mvspeed = 0.2;
+	cub->ray.mvspeed = 0.4;
 	cub->mlx = mlx_init();
 	cub->win = mlx_new_window(cub->mlx, cub->wi, cub->he, \
-		"Piment y poak mon guele");
+		"Cub3D");
 	cub->img = malloc(sizeof(t_data));
 	if (!cub->img)
 		exit(EXIT_FAILURE);

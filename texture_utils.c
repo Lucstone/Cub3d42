@@ -6,7 +6,7 @@
 /*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 07:49:32 by hdiot             #+#    #+#             */
-/*   Updated: 2023/06/03 08:23:18 by hdiot            ###   ########.fr       */
+/*   Updated: 2023/06/06 11:18:27 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,14 @@ void	get_texturecolor(t_cub *cub, t_dda *dda)
 
 void	initdatatexture(t_cub *cub)
 {
+	cub->text.w->img = mlx_xpm_file_to_image(cub->mlx, "./gstone.xpm", \
+		&cub->ray.texwi, &cub->ray.texhe);
+	if (!cub->text.n->img)
+		exitcub(cub);
+	cub->text.e->img = mlx_xpm_file_to_image(cub->mlx, "./briani.xpm", \
+		&cub->ray.texwi, &cub->ray.texhe);
+	if (!cub->text.n->img)
+		exitcub(cub);
 	cub->text.n->addr = mlx_get_data_addr(cub->text.n->img, \
 		&cub->text.n->bits_per_pixel, \
 		&cub->text.n->line_length, &cub->text.n->endian);
@@ -73,14 +81,14 @@ void	inittexture(t_cub *cub)
 	cub->text.w = malloc(sizeof(t_data));
 	if (!cub->text.w)
 		perror("Malloc error\n");
-	cub->text.n->img = mlx_xpm_file_to_image(cub->mlx, "./bluestone.xpm", \
+	cub->text.n->img = mlx_xpm_file_to_image(cub->mlx, "./redbrick.xpm", \
 		&cub->ray.texwi, &cub->ray.texhe);
+	if (!cub->text.n->img)
+		exitcub(cub);
 	cub->text.s->img = mlx_xpm_file_to_image(cub->mlx, "./wood.xpm", \
 		&cub->ray.texwi, &cub->ray.texhe);
-	cub->text.w->img = mlx_xpm_file_to_image(cub->mlx, "./greystone.xpm", \
-		&cub->ray.texwi, &cub->ray.texhe);
-	cub->text.e->img = mlx_xpm_file_to_image(cub->mlx, "./redbrick.xpm", \
-		&cub->ray.texwi, &cub->ray.texhe);
+	if (!cub->text.n->img)
+		exitcub(cub);
 	initdatatexture(cub);
 }
 
