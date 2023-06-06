@@ -6,7 +6,7 @@
 /*   By: lnaidu <lnaidu@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 12:39:10 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/06/05 18:18:16 by lnaidu           ###   ########.fr       */
+/*   Updated: 2023/06/06 12:31:14 by lnaidu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_printdata(t_map data, char **d)
 	int l = 0;
 	while (d[i])
 	{
-		//printf("%s\n", d[i]);
+		printf("%s\n", d[i]);
 		l = ft_strlen(d[i]);
 		if (longline < l)
 			longline = l;
@@ -73,4 +73,20 @@ void	ft_printdata(t_map data, char **d)
 		printf("\n");
 		l++;
 	}
+	i = 0;
+	while (i < 3)
+	{
+		printf("argf : %d; argc : %d\n", data.rgbf[i], data.rgbc[i]);
+		i++;
+	}
+}
+
+void	ft_freechar(t_map data)
+{
+	free(data.no);
+	free(data.so);
+	free(data.we);
+	free(data.f);
+	free(data.c);
+	free(data.ea);
 }

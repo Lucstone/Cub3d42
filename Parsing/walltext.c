@@ -6,7 +6,7 @@
 /*   By: lnaidu <lnaidu@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 17:07:19 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/06/05 12:44:31 by lnaidu           ###   ########.fr       */
+/*   Updated: 2023/06/06 11:23:25 by lnaidu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ int	ft_walltextno(char *crd, char *str, t_map *data, int i)
 	while (data->j < 2)
 	{
 		if (str[i++] != crd[data->j++])
-			return (-1);
+			return (free(data->no), -1);
 	}
 	if (str[i] != 32)
-		return (-1);
+		return (free(data->no), -1);
 	while (str[i] == 32)
 		i++;
 	data->j = 0;
@@ -30,12 +30,12 @@ int	ft_walltextno(char *crd, char *str, t_map *data, int i)
 		data->no[data->j++] = str[i++];
 	data->no[data->j] = 0;
 	data->countno++;
-	if (data->countno > 1)
-		return (printf("Error\nInvalid\n"), -1);
+	/*if (data->countno > 1)
+		return (printf("Error\nInvalid\n"), -1);*/
 	while (str[i])
 	{
 		if (str[i] != 32 && str[i] != 10)
-			return (-1);
+			return (free(data->no), -1);
 		i++;
 	}
 	return (i);
@@ -59,8 +59,8 @@ int	ft_walltextea(char *crd, char *str, t_map *data, int i)
 		data->ea[data->j++] = str[i++];
 	data->ea[data->j] = 0;
 	data->countea++;
-	if (data->countea > 1)
-		return (printf("Error\nInvalid\n"), -1);
+	/*if (data->countea > 1)
+		return (printf("Error\nInvalid\n"), -1);*/
 	while (str[i])
 	{
 		if (str[i] != 32 && str[i] != 10)
@@ -88,8 +88,8 @@ int	ft_walltextwe(char *crd, char *str, t_map *data, int i)
 		data->we[data->j++] = str[i++];
 	data->we[data->j] = 0;
 	data->countwe++;
-	if (data->countwe > 1)
-		return (printf("Error\nInvalid\n"), -1);
+	/*if (data->countwe > 1)
+		return (printf("Error\nInvalid\n"), -1);*/
 	while (str[i])
 	{
 		if (str[i] != 32 && str[i] != 10)
@@ -117,8 +117,8 @@ int	ft_walltextso(char *crd, char *str, t_map *data, int i)
 		data->so[data->j++] = str[i++];
 	data->so[data->j] = 0;
 	data->countso++;
-	if (data->countso > 1)
-		return (printf("Error\nInvalid\n"), -1);
+	/*if (data->countso > 1)
+		return (printf("Error\nInvalid\n"), -1);*/
 	while (str[i])
 	{
 		if (str[i] != 32 && str[i] != 10)

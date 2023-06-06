@@ -6,7 +6,7 @@
 /*   By: lnaidu <lnaidu@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:31:10 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/06/05 18:11:41 by lnaidu           ###   ########.fr       */
+/*   Updated: 2023/06/06 12:28:50 by lnaidu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,11 @@ char	**arraymap(t_map *data, char *str, int fd)
 	{
 		while (str[j])
 		{
-			if (!(str[j] == 32 || str[j] == '0' || str[j] == '1' || str[j] == 'N' || str[j] == 'S' || str[j] == 'E' || str[j] == 'W' || str[j] == 10))
+			if ((!(str[j] == 32 || str[j] == '0' || str[j] == '1' || str[j] == 'N' || str[j] == 'S' || str[j] == 'E' || str[j] == 'W' || str[j] == 10)) || str[0] == 10)
+			{
+				printf("Error\nmap not valid\n");
 				exit (1);
-			if(str[0] == 10)
-				exit (1);
+			}
 			if ((str[j] == 'N' || str[j] == 'S' || str[j] == 'E' || str[j] == 'W'))
 				l++;
 			j++;
@@ -120,8 +121,8 @@ int	ft_checkmap(char *map, t_map *data)
 		free(gnl);
 		gnl = get_next_line(fd);
 	}
-	if (ft_checkalltext(data) == 1)
-		return (1);
+	if (ft_checkcount(data) == 1 || ft_checkalltext(data) == 1)
+		return (ft_freechar(*data) ,1);
 	data->map = arraymap(data, gnl, fd );
 	return (0);
 }
@@ -139,6 +140,7 @@ int	main(int ac, char **av)
 	if (ft_checkwall(data.map, 0, 0, 0) == 1)
 		return ( 1);
 	data = ft_array(&data);
+	ft_initrgb(&data);
 	ft_printdata(data, data.map);
 	ft_freeall(data);
 	return (0);

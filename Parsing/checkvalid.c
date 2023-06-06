@@ -6,7 +6,7 @@
 /*   By: lnaidu <lnaidu@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 12:55:08 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/06/05 18:08:11 by lnaidu           ###   ########.fr       */
+/*   Updated: 2023/06/06 12:32:12 by lnaidu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ft_checkwall(char **map, int i, int j, int l)
 	while (map[i])
 	{
 		j = 0;
-		len = ft_strlen(&map[i][j]);
+		len = ft_strlen(&map[i][j]) - 1;
 		while (map[i][j])
 		{
 			if (map[i][j] == '0')
@@ -63,4 +63,30 @@ int	ft_checkwall(char **map, int i, int j, int l)
 		i++;
 	}
 	return (0);
+}
+
+void	ft_initrgb(t_map *data)
+{
+	int	i;
+	char **argf;
+	char **argc;
+
+	argf = ft_split(data->f, ',');
+	argc = ft_split(data->c, ',');
+	i = 0;
+	while (argf[i])
+	{
+		data->rgbf[i] = ft_atoi(argf[i]);
+		i++;
+	}
+	data->rgbf[i] = '\0';
+	i = 0;
+	while (argc[i])
+	{
+		data->rgbc[i] = ft_atoi(argc[i]);
+		i++;
+	}
+	data->rgbf[i] = '\0';
+	free(argf);
+	free(argc);
 }

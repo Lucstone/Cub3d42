@@ -6,7 +6,7 @@
 /*   By: lnaidu <lnaidu@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 12:55:08 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/06/05 18:23:01 by lnaidu           ###   ########.fr       */
+/*   Updated: 2023/06/06 10:47:16 by lnaidu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,8 @@ int	ft_checkint(char *str, int i, int j, int l)
 		return (printf("Error\nnot a valid color\n"), 1);
 	while (arg[i])
 	{
-		j = 0;
-		while (arg[i][j])
-		{
-			if (!(arg[i][j] >= '0' && arg[i][j] <= '9'))
-				return (free(arg), printf("Error\nnot a valid color\n"), 1);
-			j++;
-		}
+		if (!(ft_atoi(arg[i]) >= 0 && ft_atoi(arg[i]) <= 255))
+			return (free(arg), printf("Error\nnot a valid color\n"), 1);
 		i++;
 	}
 	i = 0;

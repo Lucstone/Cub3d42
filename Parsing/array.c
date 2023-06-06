@@ -6,7 +6,7 @@
 /*   By: lnaidu <lnaidu@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 15:58:11 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/06/05 18:11:21 by lnaidu           ###   ########.fr       */
+/*   Updated: 2023/06/06 11:13:04 by lnaidu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,10 @@ t_map	ft_array(t_map *data)
 				data->tab[i][j] = 0;
 			else if (j <= longline)
 				data->tab[i][j] = 5;
-			//printf("%d",data->tab[i][j]);
 			j++;
 		}
 		j = 0;
 		i++;
-		//printf("\n");
 	}
 	data->tab[i] = NULL;
 	return (*data);

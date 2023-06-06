@@ -6,7 +6,7 @@
 /*   By: lnaidu <lnaidu@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:31:24 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/06/05 17:58:04 by lnaidu           ###   ########.fr       */
+/*   Updated: 2023/06/06 12:30:58 by lnaidu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ typedef struct s_map
 	int		y;
 	int		j;
 	int		**tab;
+	int		rgbf[4];
+	int		rgbc[4];
 }					t_map;
 
 int	checkerr(char *file, int ac);
@@ -58,5 +60,8 @@ t_map	ft_takecoord(t_map data, char **str);
 void	ft_printdata(t_map data, char **d);
 int	ft_checkwall(char **map, int i, int j, int l);
 t_map	ft_array(t_map *data);
+void	ft_freechar(t_map data);
+int	ft_checkcount(t_map *data);
+void	ft_initrgb(t_map *data);
 
 #endif
