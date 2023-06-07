@@ -6,7 +6,7 @@
 /*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 18:29:38 by hdiot             #+#    #+#             */
-/*   Updated: 2023/06/07 09:51:48 by hdiot            ###   ########.fr       */
+/*   Updated: 2023/06/07 13:06:36 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	exitcub(t_cub *cub)
 	mlx_clear_window(cub->mlx, cub->win);
 	mlx_destroy_image(cub->mlx, cub->img->img);
 	mlx_destroy_window(cub->mlx, cub->win);
+	ft_freeall(cub->data);
 	free(cub->img);
 	free(cub->mlx);
 	exit(0);
@@ -84,7 +85,6 @@ void	exitcub(t_cub *cub)
 
 int	keyhook(int keycode, t_cub *cub)
 {
-	printf("keycode is %d\n", keycode);
 	if (keycode == 53)
 		exitcub(cub);
 	keycode_move(keycode, cub);

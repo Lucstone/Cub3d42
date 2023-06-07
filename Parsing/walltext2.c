@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lnaidu <lnaidu@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/30 20:09:20 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/06/06 11:23:36 by lnaidu           ###   ########.fr       */
+/*   Created: 2023/06/06 15:52:12 by lnaidu            #+#    #+#             */
+/*   Updated: 2023/06/06 15:54:21 by lnaidu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 int	ft_walltextf(char *crd, char *str, t_map *data, int i)
 {
 	data->j = 0;
-	data->f = malloc(sizeof(char *) * ft_strlen(str));
+	if (data->countf < 1)
+		data->f = malloc(sizeof(char *) * ft_strlen(str));
 	while (data->j < 1)
 	{
 		if (str[i++] != crd[data->j++])
@@ -30,8 +31,6 @@ int	ft_walltextf(char *crd, char *str, t_map *data, int i)
 		data->f[data->j++] = str[i++];
 	data->f[data->j] = 0;
 	data->countf++;
-	/*if (data->countf > 1)
-		return (printf("Error\nInvalid\n"), -1);*/
 	while (str[i])
 	{
 		if (str[i] != 32 && str[i] != 10)
@@ -44,7 +43,8 @@ int	ft_walltextf(char *crd, char *str, t_map *data, int i)
 int	ft_walltextc(char *crd, char *str, t_map *data, int i)
 {
 	data->j = 0;
-	data->c = malloc(sizeof(char *) * ft_strlen(str));
+	if (data->countc < 1)
+		data->c = malloc(sizeof(char *) * ft_strlen(str));
 	while (data->j < 1)
 	{
 		if (str[i++] != crd[data->j++])
@@ -59,8 +59,6 @@ int	ft_walltextc(char *crd, char *str, t_map *data, int i)
 		data->c[data->j++] = str[i++];
 	data->c[data->j] = 0;
 	data->countc++;
-	/*if (data->countc > 1)
-		return (printf("Error\nInvalid\n"), -1);*/
 	while (str[i])
 	{
 		if (str[i] != 32 && str[i] != 10)
@@ -68,21 +66,4 @@ int	ft_walltextc(char *crd, char *str, t_map *data, int i)
 		i++;
 	}
 	return (i);
-}
-
-int	ft_checkcount(t_map *data)
-{
-	if (data->countno > 1)
-		return (1);
-	if (data->countso > 1)
-		return (1);
-	if (data->countwe > 1)
-		return (1);
-	if (data->countea > 1)
-		return (1);
-	if (data->countf > 1)
-		return (1);
-	if (data->countc > 1)
-		return (1);
-	return (0);
 }

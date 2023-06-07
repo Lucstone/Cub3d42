@@ -6,7 +6,7 @@
 /*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 07:49:32 by hdiot             #+#    #+#             */
-/*   Updated: 2023/06/07 11:58:23 by hdiot            ###   ########.fr       */
+/*   Updated: 2023/06/07 13:09:14 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ void	initdatatexture(t_cub *cub)
 	cub->text.w->img = mlx_xpm_file_to_image(cub->mlx, cub->data.we, \
 		&cub->ray.texwi, &cub->ray.texhe);
 	if (!cub->text.w->img)
-		exitcub(cub);
+		return (perror("Error\nBad File XPM\n"), exitcub(cub));
 	cub->text.e->img = mlx_xpm_file_to_image(cub->mlx, cub->data.ea, \
 		&cub->ray.texwi, &cub->ray.texhe);
 	if (!cub->text.e->img)
-		exitcub(cub);
+		return (perror("Error\nBad File XPM\n"), exitcub(cub));
 	cub->text.n->addr = mlx_get_data_addr(cub->text.n->img, \
 		&cub->text.n->bits_per_pixel, \
 		&cub->text.n->line_length, &cub->text.n->endian);
@@ -71,24 +71,24 @@ void	inittexture(t_cub *cub)
 {
 	cub->text.e = malloc(sizeof(t_data));
 	if (!cub->text.e)
-		perror("Malloc error\n");
+		perror("Error\nMalloc\n");
 	cub->text.s = malloc(sizeof(t_data));
 	if (!cub->text.s)
-		perror("Malloc error\n");
+		perror("Error\nMalloc\n");
 	cub->text.n = malloc(sizeof(t_data));
 	if (!cub->text.n)
-		perror("Malloc error\n");
+		perror("Error\nMalloc\n");
 	cub->text.w = malloc(sizeof(t_data));
 	if (!cub->text.w)
-		perror("Malloc error\n");
+		perror("Error\nMalloc\n");
 	cub->text.n->img = mlx_xpm_file_to_image(cub->mlx, cub->data.no, \
 		&cub->ray.texwi, &cub->ray.texhe);
 	if (!cub->text.n->img)
-		exitcub(cub);
+		return (perror("Error\nBad File XPM\n"), exitcub(cub));
 	cub->text.s->img = mlx_xpm_file_to_image(cub->mlx, cub->data.so, \
 		&cub->ray.texwi, &cub->ray.texhe);
 	if (!cub->text.s->img)
-		exitcub(cub);
+		return (perror("Error\nBad File XPM\n"), exitcub(cub));
 	initdatatexture(cub);
 }
 

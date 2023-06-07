@@ -1,16 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checkvalid.c                                       :+:      :+:    :+:   */
+/*   datainit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lnaidu <lnaidu@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/26 12:55:08 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/06/06 13:39:31 by hdiot            ###   ########.fr       */
+/*   Created: 2023/06/06 13:03:09 by lnaidu            #+#    #+#             */
+/*   Updated: 2023/06/06 17:59:02 by lnaidu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+void	ft_initdata(t_map *data)
+{
+	data->countno = 0;
+	data->countso = 0;
+	data->countea = 0;
+	data->countwe = 0;
+	data->countf = 0;
+	data->countc = 0;
+	data->no = NULL;
+	data->so = NULL;
+	data->ea = NULL;
+	data->we = NULL;
+	data->f = NULL;
+	data->c = NULL;
+	data->x = 0;
+	data->y = 0;
+	data->longe = 0;
+	data->large = 0;
+}
 
 t_map	ft_takecoord(t_map *data, char **str)
 {
@@ -37,56 +57,31 @@ t_map	ft_takecoord(t_map *data, char **str)
 	return (*data);
 }
 
-int	ft_checkwall(char **map, int i, int j, int l)
+void	ft_initrgb(t_map *data, int i, int j, int k)
 {
-	int	len;
-
-	i = 0;
-	while (map[l])
-		l++;
-	while (map[i])
-	{
-		j = 0;
-		len = ft_strlen(&map[i][j]) - 1;
-		while (map[i][j])
-		{
-			if (map[i][j] == '0')
-			{
-				if (j == 0 || i == 0 || i == (l - 1) || len == j)
-					return (printf("Error\nWalls not valid\n"), 1);
-				if (map[i + 1][j] == 32 || map[i - 1][j] == 32
-						|| map[i][j + 1] == 32 || map[i][j - 1] == 32)
-					return (printf("Error\nWall not valid\n"), 1);
-			}
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
-
-void	ft_initrgb(t_map *data)
-{
-	int	i;
-	char **argf;
-	char **argc;
+	char	**argf;
+	char	**argc;
 
 	argf = ft_split(data->f, ',');
 	argc = ft_split(data->c, ',');
-	i = 0;
 	while (argf[i])
 	{
 		data->rgbf[i] = ft_atoi(argf[i]);
 		i++;
 	}
 	data->rgbf[i] = '\0';
-	i = 0;
-	while (argc[i])
+	while (argc[j])
 	{
-		data->rgbc[i] = ft_atoi(argc[i]);
-		i++;
+		data->rgbc[j] = ft_atoi(argc[j]);
+		j++;
 	}
-	data->rgbf[i] = '\0';
+	data->rgbf[j] = '\0';
+	while (k < 4)
+	{
+		free(argf[k]);
+		free(argc[k]);
+		k++;
+	}
 	free(argf);
 	free(argc);
 }

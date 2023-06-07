@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   oldcub.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:31:24 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/06/06 13:50:15 by hdiot            ###   ########.fr       */
+/*   Updated: 2023/06/07 12:07:53 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,6 @@ typedef struct s_cub
 }	t_cub;
 
 int		checkerr(char *file, int ac);
-int		parsing(int ac, char **av, t_map *data);
 int		ft_walltextno(char *crd, char *str, t_map *data, int i);
 int		ft_walltextso(char *crd, char *str, t_map *data, int i);
 int		ft_walltextwe(char *crd, char *str, t_map *data, int i);
@@ -148,10 +147,21 @@ void	ft_freeall(t_map data);
 t_map	ft_takecoord(t_map *data, char **str);
 void	ft_printdata(t_map data, char **d);
 int		ft_checkwall(char **map, int i, int j, int l);
-t_map	ft_array(t_map *data);
 void	ft_freechar(t_map data);
 int		ft_checkcount(t_map *data);
-void	ft_initrgb(t_map *data);
+void	ft_initrgb(t_map *data, int i, int j, int k);
+int		parsing(int ac, char **av, t_map *data);
+int		recupsprites(t_map *data, char *str);
+void	ft_freeca(char **tab);
+int		ft_checkopen(char *file);
+t_map	ft_array(t_map *data, int i, int j, int len);
+char	**arraymap(t_map *data, char *str, int fd);
+int		ft_get_texture(t_map *data, char *str);
+void	ft_initdata(t_map *data);
+int		ft_checkmap(char *map, t_map *data);
+void	ft_freewall(t_map data);
+void	ft_getcharsize(char *map, t_map *data, int k, int l);
+char	**tabchar(t_map *data, char *str, int fd, int l);
 
 int		keyhook(int keycode, t_cub *cub);
 void	recupposp(t_cub *cub, int x, int y, char pp);
