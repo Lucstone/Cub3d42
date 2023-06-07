@@ -6,7 +6,7 @@
 /*   By: lnaidu <lnaidu@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 13:22:29 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/06/07 11:18:30 by lnaidu           ###   ########.fr       */
+/*   Updated: 2023/06/07 17:29:27 by lnaidu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,14 @@ int	ft_checkwall(char **map, int i, int j, int l)
 			{
 				if (j == 0 || i == 0 || i == (l - 1) || len == j)
 					return (printf("Error\nWalls not valid\n"), 1);
-				if (map[i + 1][j] == 32 || map[i - 1][j] == 32
-						|| map[i][j + 1] == 32 || map[i][j - 1] == 32)
+				if ((map[i + 1][j] == 32 || map[i - 1][j] == 32
+						|| map[i][j + 1] == 32 || map[i][j - 1] == 32))
+					return (printf("Error\nWall not valid\n"), 1);
+				if ((map[i + 1][j] == '\n' || map[i - 1][j] == '\n' 
+						|| map[i][j + 1] == '\n'  || map[i][j - 1] == '\n'))
+					return (printf("Error\nWall not valid\n"), 1);
+				if ((map[i + 1][j] == '\0' || map[i - 1][j] == '\0' 
+						|| map[i][j + 1] == '\0'  || map[i][j - 1] == '\0'))
 					return (printf("Error\nWall not valid\n"), 1);
 			}
 			j++;
