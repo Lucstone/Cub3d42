@@ -6,11 +6,11 @@
 #    By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/17 11:56:41 by lnaidu            #+#    #+#              #
-#    Updated: 2023/06/07 13:05:11 by hdiot            ###   ########.fr        #
+#    Updated: 2023/06/07 14:26:52 by hdiot            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Cub3d
+NAME = cub3d
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
 SRC = main.c hooks.c algo_dda.c recupinfo.c texture_utils.c recupinfo2.c \
@@ -42,6 +42,7 @@ all : $(NAME)
 clean :
 	@rm -f $(OBJS)
 	@rm -f $(OBJS_BONUS)
+	@make clean -C ./Libft
 	@echo "$(YELLOW) Deleting !$(DEFAULT)"
 
 fclean : clean

@@ -1,9 +1,10 @@
-NO ./gstone.xpm
+NO ./textures/gstone.xpm
 
-SO ./piment.xpm
-WE ./briani.xpm
+SO ./textures/piment.xpm
 
-EA ./wood.xpm
+WE ./textures/briani.xpm
+
+EA ./textures/wood.xpm
 
 F 220,255,0
 C 225,30,0

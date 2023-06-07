@@ -1,10 +1,10 @@
-NO ./briani.xpm
+NO ./textures/briani.xpm
 
 
-SO ./redbrick.xpm
-WE ./piment.xpm     
+SO ./textures/redbrick.xpm
+WE ./textures/piment.xpm     
 
-EA ./wood.xpm
+EA ./textures/wood.xpm
 
 F 165,42,42
 C 135,206,235

@@ -6,7 +6,7 @@
 /*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 13:25:16 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/06/07 13:10:48 by hdiot            ###   ########.fr       */
+/*   Updated: 2023/06/07 14:22:29 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ int	ft_checkmap(char *map, t_map *data)
 	}
 	ft_getcharsize(map, data, k, 0);
 	if (ft_checkcount(data) == 1 || ft_checkalltext(data) == 1 || i > 0)
-		return (free(gnl), perror("Error\nInvalid map\n"), ft_freechar(*data), 1);
+		return (free(gnl), ft_putendl_fd("Error\nBad map", 2),
+			ft_freechar(*data), 1);
 	data->map = tabchar(data, gnl, fd, 0);
 	return (0);
 }

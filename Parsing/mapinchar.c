@@ -6,7 +6,7 @@
 /*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:30:36 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/06/07 13:10:37 by hdiot            ###   ########.fr       */
+/*   Updated: 2023/06/07 14:22:32 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	**tabchar(t_map *data, char *s, int fd, int l)
 	}
 	free (s);
 	if (l != 1)
-		perror("Error\nmap not valid\n");
+		ft_putendl_fd("Error\nmap not valid", 2);
 	if (l != 1)
 		exit (1);
 	return (data->map[i] = NULL, data->map);
