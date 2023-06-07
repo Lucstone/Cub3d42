@@ -6,7 +6,7 @@
 /*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 18:38:29 by hdiot             #+#    #+#             */
-/*   Updated: 2023/06/06 16:38:58 by hdiot            ###   ########.fr       */
+/*   Updated: 2023/06/07 09:47:20 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ void	dda_algo(t_cub	*cub, t_dda *dda, int x)
 	dda->mapy = (int)cub->ray.pospy;
 	dda->delta_x = fabs(1 / cub->ray.r_dirx);
 	dda->delta_y = fabs(1 / cub->ray.r_diry);
-	printf("cub->ray.r_dirx %f\n", cub->ray.r_dirx);
 	dda->is_wall = 0;
 	get_sidedist(cub, dda);
 	get_disttowall(cub, dda);

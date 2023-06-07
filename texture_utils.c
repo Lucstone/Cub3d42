@@ -6,7 +6,7 @@
 /*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 07:49:32 by hdiot             #+#    #+#             */
-/*   Updated: 2023/06/06 16:33:37 by hdiot            ###   ########.fr       */
+/*   Updated: 2023/06/06 17:30:52 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	get_bittexture(t_cub *cub, t_dda *dda)
 		wallx = cub->ray.pospx + dda->ppwall_dist * cub->ray.r_dirx;
 	wallx -= floor(wallx);
 	cub->text.texx = (int)(wallx * cub->ray.texwi);
-	if (cub->dda.wallside == 0 && cub->ray.r_dirx > 0)
+	if (cub->dda.wallside == 0 && cub->ray.r_diry > 0)
 		cub->text.texx = cub->ray.texwi - cub->text.texx - 1;
-	if (cub->dda.wallside == 1 && cub->ray.r_dirx < 0)
+	if (cub->dda.wallside == 1 && cub->ray.r_diry < 0)
 		cub->text.texx = cub->ray.texwi - cub->text.texx - 1;
 	cub->text.step = 1.0 * cub->ray.texhe / dda->linehe;
 	cub->text.texpos = (dda->draw_start - cub->he / 2 + dda->linehe / 2) \
