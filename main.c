@@ -6,7 +6,7 @@
 /*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:31:10 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/06/07 10:43:08 by hdiot            ###   ########.fr       */
+/*   Updated: 2023/06/07 11:46:55 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@ void	init_op(t_cub *cub)
 	cub->ray.texhe = 64;
 	recupposp(cub, cub->data.x, cub->data.y, cub->data.orientation);
 	orientation(cub);
-	cub->ray.pospx = init_pos(cub->info.pos_x);
-	cub->ray.pospy = init_pos(cub->info.pos_y);
-	cub->ray.rotspeed = 0.06;
-	cub->ray.mvspeed = 0.4;
+	cub->ray.pospx = init_pos(cub->info.pos_x) + 0.2;
+	cub->ray.pospy = init_pos(cub->info.pos_y) + 0.2;
+	printf("pospy %f pospx %f\n", cub->ray.pospy, cub->ray.pospx);
+	cub->ray.rotspeed = 0.12;
+	cub->ray.mvspeed = 0.2;
 	cub->mlx = mlx_init();
 	cub->win = mlx_new_window(cub->mlx, cub->wi, cub->he, \
 		"Cub3D");

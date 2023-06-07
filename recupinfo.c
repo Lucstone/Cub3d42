@@ -6,7 +6,7 @@
 /*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 07:43:06 by hdiot             #+#    #+#             */
-/*   Updated: 2023/06/07 09:55:17 by hdiot            ###   ########.fr       */
+/*   Updated: 2023/06/07 11:37:58 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,15 @@ void	orientation2(t_cub *cub)
 {
 	if (cub->info.orient == 'E')
 	{
-		cub->ray.dirpy = 1;
-		cub->ray.dirpx = 0;
+		cub->ray.dirpy = 1.00;
+		cub->ray.dirpx = 0.00;
 		cub->ray.planex = 0.66;
-		cub->ray.planey = 0;
+		cub->ray.planey = 0.00;
 	}
 	else if (cub->info.orient == 'W')
 	{
-		cub->ray.dirpy = -1;
-		cub->ray.dirpx = 0;
+		cub->ray.dirpy = -1.00;
+		cub->ray.dirpx = 0.00;
 		cub->ray.planex = -0.66;
 		cub->ray.planey = 0;
 	}
@@ -62,15 +62,15 @@ void	orientation(t_cub *cub)
 {
 	if (cub->info.orient == 'N')
 	{
-		cub->ray.dirpy = 0;
-		cub->ray.dirpx = -1;
+		cub->ray.dirpy = 0.00;
+		cub->ray.dirpx = -1.00;
 		cub->ray.planex = 0;
 		cub->ray.planey = 0.66;
 	}	
 	else if (cub->info.orient == 'S')
 	{
-		cub->ray.dirpy = 0;
-		cub->ray.dirpx = 1;
+		cub->ray.dirpy = 0.00;
+		cub->ray.dirpx = 1.00;
 		cub->ray.planex = 0;
 		cub->ray.planey = -0.66;
 	}

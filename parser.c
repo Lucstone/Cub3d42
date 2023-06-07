@@ -6,7 +6,7 @@
 /*   By: hdiot <hdiot@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:31:10 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/06/06 13:39:36 by hdiot            ###   ########.fr       */
+/*   Updated: 2023/06/07 11:55:44 by hdiot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,6 @@ int	parsing(int ac, char **av, t_map *data)
 		return (1);
 	ft_array(data);
 	ft_initrgb(data);
-	ft_printdata(*data, data->map);
+	//ft_printdata(*data, data->map);
 	return (0);
 }
