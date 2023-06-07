@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   Parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lnaidu <lnaidu@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/06 13:16:24 by lnaidu            #+#    #+#             */
-/*   Updated: 2023/06/06 16:00:34 by lnaidu           ###   ########.fr       */
+/*   Created: 2023/06/06 13:02:30 by lnaidu            #+#    #+#             */
+/*   Updated: 2023/06/06 21:23:01 by lnaidu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
-int	main(int ac, char **av)
+int	parsing(int ac, char **av, t_map *data)
 {
-	t_map	data;
-
-	if (checkerr(av[1], ac) == 1)
+	(void) ac;
+	ft_initdata(data);
+	if (ft_checkmap(av[1], data) == 1)
 		return (1);
-	if (parsing(ac, av, &data) == 1)
-		return (1);
-	ft_freeall(data);
+	if (ft_checkwall(data->map, 0, 0, 0) == 1)
+		return (ft_freewall(*data), 1);
+	ft_takecoord(data, data->map);
+	ft_initrgb(data, 0, 0, 0);
+	ft_array(data, 0, 0, 0);
+	ft_printdata(*data, data->map);
 	return (0);
 }

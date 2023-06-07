@@ -6,14 +6,17 @@
 #    By: lnaidu <lnaidu@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/17 11:56:41 by lnaidu            #+#    #+#              #
-#    Updated: 2023/06/06 11:24:59 by lnaidu           ###   ########.fr        #
+#    Updated: 2023/06/07 11:31:09 by lnaidu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = Cub3d
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
-SRC = ./main.c ./Parsing/checkmap.c ./Parsing/walltext.c ./Parsing/walltext2.c ./Parsing/free.c ./Parsing/checkvalid.c ./Parsing/array.c
+SRC = ./main.c ./Parsing/datainit.c ./Parsing/errorarg.c ./Parsing/errormap.c \
+		./Parsing/errorsprites.c ./Parsing/free.c ./Parsing/getchardata.c \
+		./Parsing/parsing.c ./Parsing/mapinchar.c ./Parsing/walltext.c ./Parsing/walltext2.c \
+		./print.c ./Parsing/gettab.c
 #COLORS
 RED = \033[1;31m
 GREEN = \033[1;32m
